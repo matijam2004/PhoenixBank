@@ -1,0 +1,203 @@
+.deposit-checks-page {
+  .pane-title {
+    margin-top: 1rem;
+  }
+
+  #check-upload {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  #file-tab-pane {
+    .form-label {
+      margin-top: 0.8rem;
+    }
+
+    .img-item {
+      position: relative;
+      aspect-ratio: 16/9;
+      width: 100%;
+      border: 1px dashed var(--dark-gray);
+      border-radius: 8px;
+      margin-top: 20px;
+      overflow: hidden;
+
+      &.set {
+        border: transparent;
+      }
+
+      .label {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        background-color: rgb(255 255 255 / 0.5);
+        backdrop-filter: blur(0.1rem);
+        color: black;
+        padding: 4px 8px;
+      }
+
+      .img-thumbnail {
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+      }
+
+      .action-msg {
+        color: var(--dark-gray);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+
+  .camera-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .webcam-container {
+    position: relative;
+    margin-top: 1rem;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    width: 100%;
+    border-radius: 16px;
+
+    video {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .label {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 8px 16px;
+      background-color: rgb(0 0 0 / 0.1);
+      width: 100%;
+    }
+  }
+
+  .preview-panel {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      "header header"
+      "front back";
+
+    .header {
+      grid-area: header;
+    }
+
+    .front {
+      grid-area: front;
+    }
+
+    .back {
+      grid-area: back;
+    }
+
+    .image-item {
+      position: relative;
+      border-radius: 8px;
+      aspect-ratio: 16 / 9;
+      background-color: var(--bg-component-demp);
+      overflow: hidden;
+
+      .label {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        background-color: rgb(255 255 255 / 0.1);
+        margin: 0;
+        padding: 4px 8px;
+        backdrop-filter: blur(0.1rem);
+      }
+
+      .check-img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  .controls {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .checks {
+    margin-bottom: 80px;
+
+    .card-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      .card:not(.empty) {
+        width: 100%;
+        display: grid;
+        gap: 10px;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+          "date date"
+          "main main"
+          "front back"
+          "status status";
+
+        .date {
+          grid-area: date;
+        }
+        .amount {
+          font-size: 2rem;
+          grid-area: main;
+        }
+
+        .account_id {
+          font-size: 1.25rem;
+        }
+
+        .status {
+          grid-area: status;
+        }
+
+        .front {
+          grid-area: front;
+        }
+
+        .back {
+          grid-area: back;
+        }
+
+        .img-item {
+          position: relative;
+          width: 100%;
+          border-radius: 8px;
+          overflow: hidden;
+          background-color: var(--bg-component-demp);
+
+          .label {
+            position: absolute;
+            background-color: rgb(0 0 0 / 0.5);
+            color: white;
+            width: 100%;
+            padding: 4px 16px;
+          }
+          img {
+            aspect-ratio: 16/9;
+            max-width: 100%;
+            object-fit: contain;
+          }
+        }
+      }
+    }
+  }
+}

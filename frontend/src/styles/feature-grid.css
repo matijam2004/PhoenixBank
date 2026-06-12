@@ -1,0 +1,58 @@
+/* ============================================
+   FEATURE GRID SECTION
+   Large animated text revealing features
+   ============================================ */
+
+/* -------------------- SECTION CONTAINER -------------------- */
+/* Full-height section with dark background */
+#feature-grid {
+  position: relative;
+  z-index: 1;
+  margin-top: 0;
+  padding-top: 80px;
+  background: #0b0b0b;
+}
+
+/* Centered flexbox container for words */
+.fg {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 2rem;
+}
+
+/* -------------------- WORD CONTAINER -------------------- */
+/* Wrapper for animated feature words */
+.fg-words {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* -------------------- INDIVIDUAL WORDS -------------------- */
+/* Large gradient text for each feature word */
+.fg-word {
+  font-size: clamp(10rem, 20vw, 17rem);
+  line-height: 0.9;
+  font-weight: 750;
+  margin: 0;
+  letter-spacing: -4px;
+  background: linear-gradient(-90deg, #fffc, #ffffff40);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1rem;
+  will-change: transform, opacity; 
+}
+
+/* -------------------- RESPONSIVE DESIGN -------------------- */
+/* Tablet and mobile adjustments */
+@media (max-width: 1024px) {
+  /* Smaller text on smaller screens */
+  .fg-word {
+    font-size: clamp(3rem, 12vw, 8rem);
+    letter-spacing: -2px;
+  }
+}

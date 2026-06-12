@@ -1,0 +1,775 @@
+.home-loans-keys-section {
+  background: #0a0a0a;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 60px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.home-loans-keys-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  max-width: 1400px;
+  width: 100%;
+  gap: 5rem;
+  margin: 0 auto;
+}
+
+.home-loans-keys-text {
+  flex: 1;
+  color: #fff;
+  font-family: Garamond, "Times New Roman", serif;
+}
+
+.home-loans-keys-text h2 {
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+}
+
+.keys-intro {
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  font-weight: 300;
+  line-height: 1.8;
+  color: #e0e0e0;
+  margin-bottom: 3rem;
+}
+
+.keys-features {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.keys-feature-item {
+  padding: 1.5rem 0;
+  border-top: 1px solid rgba(201, 169, 97, 0.2);
+}
+
+.keys-feature-item:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.keys-feature-item h3 {
+  font-size: clamp(1.3rem, 2vw, 1.5rem);
+  font-weight: 400;
+  color: #C9A961;
+  margin-bottom: 0.75rem;
+  font-family: Garamond, "Times New Roman", serif;
+}
+
+.keys-feature-item p {
+  font-size: clamp(0.95rem, 1.3vw, 1.1rem);
+  font-weight: 300;
+  line-height: 1.7;
+  color: #e0e0e0;
+  margin: 0;
+  font-family: Garamond, "Times New Roman", serif;
+}
+
+.home-loans-keys-image {
+  flex: 1.2;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-left: 2rem;
+}
+
+.home-loans-keys-image img {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(201, 169, 97, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  object-fit: cover;
+}
+
+.home-loans-keys-image:hover img {
+  transform: scale(1.02);
+  box-shadow: 0 24px 70px rgba(201, 169, 97, 0.3), 0 0 0 1px rgba(201, 169, 97, 0.2);
+}
+
+@media (max-width: 900px) {
+  .home-loans-keys-content {
+    flex-direction: column;
+    gap: 3rem;
+    text-align: left;
+  }
+  .home-loans-keys-image {
+    justify-content: center;
+  }
+  .keys-features {
+    gap: 1.5rem;
+  }
+  .keys-feature-item {
+    padding: 1.25rem 0;
+  }
+}
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1.2s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Container */
+.home-loans-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #000000;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Header with background image and text */
+.home-loans-header {
+  width: 100%;
+  height: 100vh;
+  background-image: url('../../images/HouseHero.png');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.home-loans-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
+.home-loans-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 900px;
+  padding: 0 2rem;
+}
+
+.home-loans-title {
+  font-family: Garamond, "Times New Roman", serif;
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 700;
+  color: white;
+  text-align: center;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+  margin: 0 0 2rem 0;
+  line-height: 1.1;
+  letter-spacing: -1px;
+}
+
+.home-loans-line {
+  display: block;
+}
+
+.home-loans-accent {
+  background: linear-gradient(90deg, #d7c29a, #fbbf24);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.home-loans-subtitle {
+  font-family: Garamond, "Times New Roman", serif;
+  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+  color: rgba(255, 255, 255, 0.85);
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  line-height: 1.8;
+  margin: 0;
+  font-weight: 300;
+  letter-spacing: 0.3px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.home-loans-bottom-text {
+  position: absolute;
+  bottom: 4rem;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  text-align: center;
+}
+
+.home-loans-bottom-text p {
+  font-family: Garamond, "Times New Roman", serif;
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
+  color: rgba(255, 255, 255, 0.7);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  margin: 0;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+}
+
+.home-loans-header-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+
+.home-loans-cta-button {
+  padding: 16px 40px;
+  font-size: 1rem;
+  font-weight: 500;
+  border: 1px solid #C9A961;
+  background: transparent;
+  color: #C9A961;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: Garamond, "Times New Roman", serif;
+}
+
+.home-loans-cta-button.primary {
+  background: #C9A961;
+  color: #000000;
+}
+
+.home-loans-cta-button.primary:hover {
+  background: #b8954f;
+  border-color: #b8954f;
+}
+
+.home-loans-cta-button.secondary:hover {
+  background: #C9A961;
+  color: #000000;
+}
+
+/* LOAN TYPES SECTION */
+.loan-types-section {
+  background: #0a0a0a;
+  padding: 100px 60px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-family: Garamond, "Times New Roman", serif;
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+}
+
+.section-kicker {
+  text-align: center;
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  color: #e0e0e0;
+  margin-bottom: 60px;
+  font-weight: 300;
+  font-family: Garamond, "Times New Roman", serif;
+}
+
+.loan-types-tabs {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 60px;
+}
+
+.loan-type-tab {
+  padding: 20px 30px;
+  background: transparent;
+  border: 1px solid #C9A961;
+  color: #C9A961;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: Garamond, "Times New Roman", serif;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-width: 200px;
+}
+
+.loan-type-tab:hover {
+  background: rgba(201, 169, 97, 0.1);
+}
+
+.loan-type-tab.active {
+  background: #C9A961;
+  color: #000000;
+  border-color: #C9A961;
+}
+
+.loan-type-name {
+  font-weight: 500;
+  text-align: center;
+}
+
+.loan-type-rate {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.selected-loan-details {
+  margin-top: 40px;
+}
+
+.selected-loan-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(201, 169, 97, 0.3);
+  padding: 50px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.selected-loan-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.selected-loan-title {
+  font-size: 2rem;
+  font-weight: 400;
+  color: #ffffff;
+  margin: 0;
+  font-family: Garamond, "Times New Roman", serif;
+}
+
+.selected-loan-rate-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.rate-label {
+  font-size: 0.9rem;
+  color: #e0e0e0;
+  margin-bottom: 5px;
+  font-family: Garamond, "Times New Roman", serif;
+}
+
+.rate-value {
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: #C9A961;
+  line-height: 1;
+  font-family: Garamond, "Times New Roman", serif;
+}
+
+.rate-apr {
+  font-size: 1rem;
+  color: #e0e0e0;
+  margin-top: 5px;
+  font-family: Garamond, "Times New Roman", serif;
+}
+
+.selected-loan-description {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #e0e0e0;
+  margin-bottom: 30px;
+  font-weight: 300;
+  font-family: Garamond, "Times New Roman", serif;
+}
+
+.selected-loan-features {
+  margin-bottom: 40px;
+}
+
+.features-title {
+  font-size: 1.3rem;
+  color: #ffffff;
+  margin-bottom: 20px;
+  font-weight: 400;
+  font-family: Garamond, "Times New Roman", serif;
+}
+
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.features-list li {
+  padding: 12px 0;
+  padding-left: 30px;
+  position: relative;
+  color: #e0e0e0;
+  font-size: 1rem;
+  line-height: 1.6;
+  font-weight: 300;
+  font-family: Garamond, "Times New Roman", serif;
+}
+
+.features-list li:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #C9A961;
+  font-weight: bold;
+}
+
+.apply-loan-button {
+  width: 100%;
+  padding: 18px;
+  background: #C9A961;
+  color: #000000;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: Garamond, "Times New Roman", serif;
+}
+
+.apply-loan-button:hover {
+  background: #b8954f;
+}
+
+/* BENEFITS SECTION */
+.loans-benefits-section {
+  background: #000000;
+  padding: 100px 60px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.section-text {
+  text-align: center;
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  line-height: 1.8;
+  color: #e0e0e0;
+  max-width: 800px;
+  margin: 0 auto 60px;
+  font-weight: 300;
+  font-family: Garamond, "Times New Roman", serif;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  margin-top: 60px;
+}
+
+.loan-feature-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(201, 169, 97, 0.2);
+  padding: 40px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.loan-feature-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.feature-icon {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #C9A961;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 20px;
+  padding: 12px 20px;
+  border: 1px solid #C9A961;
+  display: inline-block;
+  font-family: Garamond, "Times New Roman", serif;
+}
+
+.feature-title {
+  font-size: 1.5rem;
+  color: #ffffff;
+  margin-bottom: 15px;
+  font-weight: 400;
+  font-family: Garamond, "Times New Roman", serif;
+}
+
+.feature-description {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #e0e0e0;
+  font-weight: 300;
+  font-family: Garamond, "Times New Roman", serif;
+}
+
+/* Animation classes */
+.animate-slide-up {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: none;
+}
+
+.animate-visible .animate-slide-up {
+  animation: slideUpBounce 1s ease-out forwards;
+}
+
+.animate-fade-in {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: none;
+}
+
+.animate-visible .animate-fade-in {
+  animation: fadeInGrow 1.2s ease-out 0.3s forwards;
+}
+
+@keyframes slideUpBounce {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  60% {
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInGrow {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* CALCULATOR SECTION */
+.calculator-section {
+  background: #000000;
+  padding: 100px 60px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.calculator-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.calculator-content {
+  text-align: center;
+}
+
+.calculator-box {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(201, 169, 97, 0.3);
+  padding: 40px;
+  margin: 40px 0;
+}
+
+.calculator-inputs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.calc-input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.calc-input-group label {
+  color: #e0e0e0;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+  text-align: left;
+  font-family: Garamond, "Times New Roman", serif;
+  font-weight: 300;
+}
+
+.calc-input-group input,
+.calc-input-group select {
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(201, 169, 97, 0.3);
+  color: #ffffff;
+  font-size: 1rem;
+  font-family: Garamond, "Times New Roman", serif;
+}
+
+.calc-input-group input:focus,
+.calc-input-group select:focus {
+  outline: none;
+  border-color: #C9A961;
+}
+
+.calc-input-group input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.calculator-result {
+  text-align: center;
+  padding: 30px;
+  background: rgba(201, 169, 97, 0.1);
+  border: 1px solid #C9A961;
+}
+
+.result-label {
+  font-size: 0.9rem;
+  color: #e0e0e0;
+  margin-bottom: 10px;
+  font-family: Garamond, "Times New Roman", serif;
+  font-weight: 300;
+}
+
+.result-value {
+  font-size: 3rem;
+  font-weight: 300;
+  color: #C9A961;
+  margin-bottom: 15px;
+  font-family: Garamond, "Times New Roman", serif;
+}
+
+.result-note {
+  font-size: 0.85rem;
+  color: #e0e0e0;
+  opacity: 0.7;
+  margin: 0;
+  font-family: Garamond, "Times New Roman", serif;
+  font-weight: 300;
+}
+
+/* CTA SECTION */
+.loans-cta-section {
+  background: #0a0a0a;
+  padding: 100px 60px;
+  text-align: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+
+.cta-button {
+  padding: 16px 40px;
+  font-size: 1rem;
+  font-weight: 500;
+  border: 1px solid #C9A961;
+  background: #C9A961;
+  color: #000000;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: Garamond, "Times New Roman", serif;
+}
+
+.cta-button:hover {
+  background: #b8954f;
+  border-color: #b8954f;
+}
+
+.cta-button.secondary {
+  background: transparent;
+  color: #C9A961;
+}
+
+.cta-button.secondary:hover {
+  background: #C9A961;
+  color: #000000;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+  .loan-types-section,
+  .loans-benefits-section,
+  .loans-cta-section,
+  .home-loans-keys-section,
+  .calculator-section {
+    padding: 60px 30px;
+  }
+
+  .calculator-inputs {
+    grid-template-columns: 1fr;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .selected-loan-card {
+    padding: 30px 20px;
+  }
+
+  .selected-loan-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .selected-loan-rate-box {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .loan-types-tabs {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .loan-type-tab {
+    width: 100%;
+  }
+
+  .benefits-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-loans-keys-content {
+    flex-direction: column;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .home-loans-keys-image {
+    justify-content: center;
+  }
+}
+

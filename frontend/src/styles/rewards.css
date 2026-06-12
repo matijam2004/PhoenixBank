@@ -1,0 +1,1029 @@
+/* Phoenix Bank Rewards Page - Premium loyalty program design */
+
+/* ROOT VARIABLES - Insignia exact */
+:root {
+  --gold: #C9A961;
+  --white: #ffffff;
+  --black: #000000;
+  --insignia-gold: #d7c29a;
+  --insignia-bg: #fafafa;
+}
+
+/* PAGE CONTAINER */
+.rewards-page {
+  background: #000000;
+  color: #ffffff;
+  font-family: 'Garamond', 'Times New Roman', serif;
+  overflow-x: hidden;
+}
+
+/* Text animations */
+.animate-text {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 1s ease forwards;
+}
+
+.rewards-hero-title.animate-text {
+  animation-delay: 0.2s;
+}
+
+.rewards-hero-subtitle.animate-text {
+  animation-delay: 0.5s;
+}
+
+.rewards-login-btn.animate-text {
+  animation-delay: 0.8s;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* World Belongs To You animations */
+.animate-slide-up {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: none;
+}
+
+.animate-visible .animate-slide-up {
+  animation: slideUpBounce 1s ease-out forwards;
+}
+
+.animate-fade-in {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: none;
+}
+
+.animate-visible .animate-fade-in {
+  animation: fadeInGrow 1.2s ease-out 0.3s forwards;
+}
+
+.animate-scale-in {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: none;
+}
+
+.animate-visible .animate-scale-in {
+  animation: scaleInBounce 0.8s ease-out 0.6s forwards;
+}
+
+@keyframes slideUpBounce {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  60% {
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInGrow {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes scaleInBounce {
+  0% {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Redeem cards staggered animation */
+.card-animate {
+  opacity: 0;
+  transform: translateY(60px) scale(0.95);
+  transition: none;
+}
+
+.animate-visible .card-animate {
+  animation: cardReveal 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes cardReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(60px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* HERO SECTION */
+.rewards-hero {
+  min-height: 80vh;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 60px;
+  padding: 120px 120px 80px 120px;
+  align-items: center;
+  background: #000000;
+  color: #ffffff;
+}
+
+.rewards-hero-content {
+  max-width: 600px;
+}
+
+.rewards-hero-title {
+  font-family: 'Garamond', 'Times New Roman', serif;
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 400;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  background-image: linear-gradient(-90deg, #fffc, #ffffff40);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: #b0b0b0;
+  letter-spacing: -0.02em;
+}
+
+.rewards-hero-subtitle {
+  font-size: 1.1rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 2.5rem;
+}
+
+.rewards-login-btn {
+  font-family: 'Garamond', 'Times New Roman', serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #000000;
+  background: var(--gold);
+  border: none;
+  padding: 1rem 3rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.rewards-login-btn:hover {
+  background: #d4b76d;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(201, 169, 97, 0.3);
+}
+
+.rewards-hero-image {
+  position: relative;
+  height: 85vh;
+  min-width: 65vw;
+  max-width: 80vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  clip-path: polygon(30% 0, 100% 0, 100% 100%, 0 100%);
+  box-shadow: 0 8px 40px 0 rgba(0,0,0,0.25);
+  margin-right: -15vw;
+  margin-left: 1vw;
+  background: #222;
+  z-index: 2;
+}
+
+.rewards-hero-image img {
+  object-fit: cover;
+  filter: brightness(0.95);
+  opacity: 0;
+  transform: scale(1.2);
+  transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1), 
+              transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity, transform;
+}
+
+.rewards-hero-image.visible img {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* SPEND REWARD SECTION */
+.spend-reward-section {
+  padding: 100px 120px;
+  background: #000000; 
+  color: #000000;
+  text-align: center;
+}
+
+.section-kicker {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin: -1rem auto 2rem;
+}
+
+.section-title {
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 4rem;
+  color: #ffffff; /* White text on black background */
+  letter-spacing: -0.01em;
+  transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Slanted panels - ALL FULL WIDTH with diagonal edges */
+.slanted-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+  margin-top: 0;
+}
+
+.content-row.full-width {
+  position: relative;
+  width: 100vw; /* Full viewport width */
+  height: 60vh;
+  min-height: 500px;
+  overflow: visible; /* Allow diagonal cuts to show */
+  margin-left: calc(-50vw + 50%); /* Break out of container to reach screen edge */
+  margin-top: 0; /* Panels touch without overlap */
+  background: #000; /* Black backdrop behind images */
+}
+
+.content-row.full-width:first-child {
+  margin-top: 0;
+  clip-path: polygon(0 0, 70% 0, 85% 100%, 0 100%); /* Shorter horizontal length */
+}
+
+.content-row.full-width:nth-child(2) {
+  clip-path: polygon(0 0, 85% 0, 100% 100%, 0 120%); /* Longer to match first panel's bottom cut */
+}
+
+.content-row.full-width:nth-child(3) {
+  /* Left edge touches at bottom, diagonal on top-left */
+  clip-path: polygon(17.44% 0, 100% 0, 100% 100%, 0 100%);
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.1);
+}
+
+/* Fill the left wedge of the 3rd panel with the provided pattern */
+/* Pattern on left wedge: keep static and ABOVE the reveal overlay */
+.content-row.full-width:nth-child(3)::before {
+  display: none; /* Hide the black pattern overlay */
+}
+
+/* Pattern image positioned in left wedge */
+.pattern-wedge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left center;
+  clip-path: polygon(0 0, 17.44% 0, 0 120%);
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* Insignia-style pattern overlay */
+.h400 {
+  height: 400px;
+  position: relative;
+}
+
+.parallax.connected {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.pattern-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  clip-path: polygon(0 0, 17.44% 0, 0 120%);
+  z-index: 2;
+  opacity: 0.6;
+  mix-blend-mode: multiply;
+}
+
+/* Reveal animation - Insignia's exact implementation */
+@media only screen and (min-width: 650px) {
+  .reveal2::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  background-color: #000; /* black background behind pictures during reveal */
+  transition: transform 3s cubic-bezier(0.22, 1, 0.36, 1);
+    transform-origin: 100% 50%;
+    transform: scaleX(1);
+    z-index: 2; /* below text, above image */
+  }
+
+  .reveal2.shown::after {
+    transform: scaleX(0);
+  }
+}
+
+.oh {
+  overflow: hidden;
+}
+
+.slanted-panel > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  z-index: 1;
+}
+
+/* Move third panel image to the right */
+.content-row.full-width:nth-child(3) .slanted-panel > img {
+  object-position: 70% center; /* Shift image right */
+}
+
+/* Insignia's exact .parallax styling */
+.parallax {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.parallax img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Move third panel image (inside parallax) to the right without changing shape */
+.content-row.full-width:nth-child(3) .parallax img {
+  object-position: 70% center; /* increase to push further right, decrease to center */
+}
+
+/* Dim images slightly for better text contrast like Insignia */
+.content-row.full-width .parallax::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Insignia's exact .some-overlay styling */
+.banner-overlay, .scroll-start .scroll-area, .some-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+/* Insignia's exact .content-row-in styling */
+.content-row.full-width .content-row-in {
+  width: 100% !important;
+}
+
+.content-row .content-row-in {
+  margin-left: auto;
+  margin-right: auto;
+  width: calc(100% - 22.91667vw);
+}
+
+/* Insignia's exact .hoverblock::before styling */
+.hoverblock::before {
+  content: '';
+  display: block;
+  opacity: 0;
+  -webkit-transition: opacity 1s cubic-bezier(0, 0.75, 0.25, 1);
+  -o-transition: opacity 1s cubic-bezier(0, 0.75, 0.25, 1);
+  transition: opacity 1s cubic-bezier(0, 0.75, 0.25, 1);
+  background-color: #d7c29a;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.hoverblock:hover::before {
+  opacity: 0.15;
+}
+
+/* Insignia Framework Classes */
+.relative {
+  position: relative;
+}
+
+.hoverblock {
+  position: relative;
+}
+
+.hoverblock::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  transition: opacity 1s cubic-bezier(0, 0.75, 0.25, 1);
+  background-color: var(--insignia-gold);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hoverblock:hover::before {
+  opacity: 0.15;
+}
+
+.vmiddle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.center {
+  text-align: center;
+}
+
+.style1 {
+  font-family: 'Garamond', 'Times New Roman', serif;
+  font-size: clamp(3.2rem, 7vw, 5.5rem); /* closer to Insignia scale */
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.style4 {
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.white {
+  color: #ffffff;
+}
+
+.mt20 {
+  margin-top: 1.25rem;
+}
+
+.mt80 {
+  margin-top: 5.55556vw;
+}
+
+.fw300 {
+  font-weight: 300;
+}
+
+/* Text wrapper - overlay on top of image */
+.content-row-in {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  z-index: 20; /* always on top so text stays visible */
+  background: transparent !important; /* no background blocking text */
+}
+
+/* Black overlay that reveals image - 5 vertical strips */
+.some-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  z-index: 10; /* below text (20), above image/reveal (1-4) */
+  pointer-events: none;
+  background: transparent !important; /* container should be transparent */
+}
+
+
+.some-overlay span {
+  flex: 1;
+  background: #000;
+  transform-origin: bottom;
+  transform: scaleY(1);
+  transition: transform 1.8s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+/* Stagger each span reveal */
+.some-overlay span:nth-child(1) { transition-delay: 0s; }
+.some-overlay span:nth-child(2) { transition-delay: 0.12s; }
+.some-overlay span:nth-child(3) { transition-delay: 0.24s; }
+.some-overlay span:nth-child(4) { transition-delay: 0.36s; }
+.some-overlay span:nth-child(5) { transition-delay: 0.48s; }
+
+.slanted-panel.visible .some-overlay span {
+  transform: scaleY(0);
+}
+
+/* Keep header container visible */
+.style1,
+.style4 {
+  opacity: 1 !important;
+  background: transparent !important;
+}
+
+/* Headers - NO ANIMATION, just visible white text */
+.style1 span,
+.style1 span span,
+.style4 span,
+.style4 span span {
+  opacity: 1 !important;
+  transform: none !important;
+  color: #ffffff !important;
+  transition: none !important;
+  background: transparent !important;
+}
+
+/* WORLD SECTION */
+.world-section {
+  padding: 100px 120px;
+  background: #000000;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.section-text {
+  font-size: 1.1rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 3rem;
+}
+
+.cta-button {
+  font-family: 'Garamond', 'Times New Roman', serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--white);
+  background: transparent;
+  border: 2px solid var(--white);
+  padding: 1rem 3rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.cta-button:hover {
+  background: var(--white);
+  color: #000000;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.15);
+}
+
+/* REDEEM SECTION - Insignia Style */
+.redeem-section {
+  position: relative;
+  margin-top: 80px;
+  padding-top: 80px;
+  background: #000000; /* Black background */
+  text-align: center;
+}
+
+/* Left side boat image */
+.leftimage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.leftimage3 {
+  clip-path: polygon(0 0, 100% 0, 60% 100%, 0 100%);
+}
+
+.leftonehelper {
+  width: 100%;
+  height: 100%;
+}
+
+.leftonehelper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Right side content */
+.rightside {
+  margin-left: 80px;
+  margin-right: 80px;
+  padding: 80px;
+  padding-left: 80px;
+  padding-right: 80px;
+  position: relative;
+  background: #000000; /* Match black background */
+}
+
+.light-bg {
+  background: #000000; /* Black instead of light */
+}
+
+.section-subtitle {
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.8;
+  max-width: 800px;
+  margin: 20px auto 80px;
+  color: rgba(255, 255, 255, 0.7); /* Light text on black background */
+}
+
+/* Grid of 4 cards - 2x2 layout */
+.redemption-grid.grid2 {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0 2.5vw; /* narrower gap so images appear wider */
+  margin-top: 5.55556vw;
+  position: relative;
+  z-index: 2;
+  align-items: start;
+}
+
+.grid-element {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Card image container */
+.media-helper {
+  position: relative;
+  width: 100%;
+  padding-top: 20vw; /* reduced height ratio for wider appearance */
+  overflow: hidden;
+  z-index: 1;
+}
+
+.media-helper2,
+.media-helper3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #4c4c4c;
+}
+
+.media-helper3 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Text overlay on images */
+.image-text-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 42%; /* lift text into the lower third instead of hugging the edge */
+  display: flex;
+  align-items: flex-end;
+  padding: 0 22px 26px 22px;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.42) 0%,
+    rgba(0, 0, 0, 0.22) 40%,
+    rgba(0, 0, 0, 0) 75%
+  );
+  z-index: 3;
+  pointer-events: none;
+  display: none !important; /* hide overlay header on images */
+}
+
+.image-overlay-title {
+  font-family: 'Garamond', 'Times New Roman', serif;
+  font-size: clamp(1.6rem, 2.3vw, 2.8rem);
+  line-height: 1.08;
+  font-weight: 400;
+  color: #ffffff;
+  margin: 0;
+  text-align: left;
+  letter-spacing: -0.01em;
+  max-width: 75%; /* encourage a clean two-line wrap like the reference */
+  text-shadow: 0 8px 22px rgba(0, 0, 0, 0.35), 0 3px 10px rgba(0,0,0,0.25);
+}
+
+/* White card content below image */
+.card-content {
+  background: #ffffff;
+  margin-left: 0; /* align with left edge of image */
+  margin-right: 0; /* align with right edge of image */
+  padding-left: 2.08333vw; /* 30px eq */
+  padding-right: 2.08333vw;
+  padding-top: 3.47222vw;  /* 50px eq */
+  padding-bottom: 3.47222vw;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  margin-top: -3.47222vw; /* subtle upward overlap like reference */
+  height: 320px; /* Fixed height so all cards are exactly the same size */
+}
+
+.card-content:hover {
+  box-shadow: 0 26px 70px -24px rgba(0,0,0,0.28);
+  transform: translateY(-5px);
+}
+
+/* Adjust image crop to hint at overlap depth */
+.media-helper3 img {
+  filter: brightness(1);
+  transition: transform 0.8s cubic-bezier(0.4,0,0.2,1);
+}
+
+.grid-element:hover .media-helper3 img {
+  transform: scale(1.05);
+}
+
+.card-title {
+  font-family: 'Garamond', 'Times New Roman', serif;
+  font-size: clamp(1.4rem, 1.9vw, 2.2rem);
+  font-weight: 400;
+  margin: 0;
+  color: #000000;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.card-line {
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+  margin: 20px 0; /* left aligned inside card */
+}
+
+.card-text {
+  font-size: 0.95rem;
+  font-weight: 300;
+  line-height: 1.6;
+  color: #666;
+  margin: 0;
+}
+
+.object-fit {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.redemption-card {
+  display: none; /* Hide old card style */
+}
+
+.redemption-title,
+.redemption-text,
+.redemption-icon {
+  display: none; /* Hide old elements */
+}
+
+/* SUGGESTED SECTION */
+.suggested-section {
+  padding: 100px 120px;
+  background: #000000;
+  text-align: center;
+}
+
+.suggested-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.suggested-card {
+  background: rgba(255, 255, 255, 0.02);
+  overflow: hidden;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+              opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  transform: translateY(80px);
+}
+
+.suggested-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.suggested-card:hover {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+.suggested-image {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+}
+
+.suggested-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.2);
+  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), 
+              transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity, transform;
+}
+
+.suggested-card.visible .suggested-image img {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.suggested-card:hover .suggested-image img {
+  transform: scale(1.08);
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.suggested-content {
+  padding: 3rem;
+}
+
+.suggested-title {
+  font-family: 'Garamond', 'Times New Roman', serif;
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: var(--white);
+  margin-bottom: 1rem;
+}
+
+.suggested-text {
+  font-size: 1rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.8;
+}
+
+/* TESTIMONIAL SECTION */
+.testimonial-section {
+  padding: 100px 120px;
+  background: #000000;
+  text-align: center;
+}
+
+.testimonial-content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 4rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  transform: translateY(80px);
+  transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), 
+              transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.testimonial-content.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.quote-text {
+  font-size: 1.5rem;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 2rem;
+}
+
+.quote-source {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quote-source img {
+  max-width: 150px;
+  height: auto;
+  filter: grayscale(100%) brightness(2);
+  opacity: 0.5;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .rewards-hero,
+  .spend-reward-section,
+  .world-section,
+  .redeem-section,
+  .suggested-section,
+  .testimonial-section {
+    padding: 80px 60px;
+  }
+
+  .rewards-hero {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .redemption-grid.grid2 {
+    grid-template-columns: repeat(2, 1fr); /* two images next to each other on tablet */
+    gap: 0 4vw;
+  }
+
+  .suggested-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .slanted-panel {
+    min-height: 55vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .rewards-hero,
+  .spend-reward-section,
+  .world-section,
+  .redeem-section,
+  .suggested-section,
+  .testimonial-section {
+    padding: 60px 30px;
+  }
+
+  .redemption-grid.grid2 {
+    grid-template-columns: 1fr; /* single column on mobile */
+    gap: 0;
+  }
+
+  .rewards-hero-title {
+    font-size: 2.5rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .slanted-panel {
+    min-height: 50vh;
+  }
+}
+
+/* Responsive reset for overlapping cards on smaller screens */
+@media (max-width: 1024px) {
+  .redemption-grid.grid2 .grid-element .card-content {
+    margin-left: -15px;
+    margin-right: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .leftimage { display: none; }
+  .rightside { padding: 40px 20px; margin: 0; }
+  .redemption-grid.grid2 .grid-element .card-content {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}

@@ -1,0 +1,64 @@
+.transaction-details {
+  .modal-header {
+    padding: 20px 16px 0 16px;
+  }
+
+  .modal-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+
+    .rounded-pill {
+      font-size: 0.8em;
+    }
+  }
+
+  .modal-body {
+    margin: 16px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+
+    .date {
+      color: var(--light-gray);
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .amount {
+      text-align: center;
+      color: white;
+      font-size: 3em;
+      margin-bottom: 16px;
+    }
+
+    .label {
+      font-weight: bold;
+    }
+
+    .accounts {
+      display: flex;
+      flex-direction: column;
+      margin-top: 12px;
+
+      span {
+        text-transform: uppercase;
+
+        strong {
+          text-transform: capitalize;
+        }
+      }
+    }
+
+    .description {
+      margin-top: 12px;
+
+      .content {
+        color: var(--light-gray);
+      }
+    }
+  }
+}

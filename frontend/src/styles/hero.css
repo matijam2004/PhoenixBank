@@ -1,0 +1,346 @@
+/* ============================================
+   HERO SECTION
+   Full-screen video hero with animated text
+   ============================================ */
+
+/* -------------------- SECTION CONTAINER -------------------- */
+/* Full-height hero section with video background */
+.section-home-hero {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  width: 100vw;
+  max-width: 100%;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  background: #000000;
+}
+
+/* -------------------- BACKGROUND VIDEO -------------------- */
+/* Video layer covering entire hero section */
+.background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+/* Video element with dimming filter */
+.background-video__el {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.8);
+  min-width: 100%;
+  min-height: 100%;
+}
+
+/* Dark gradient overlay on video */
+.background-video__gradient {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.25) 30%, rgba(0, 0, 0, 0.55) 100%);
+  mix-blend-mode: normal;
+}
+
+/* -------------------- CONTENT WRAPPER -------------------- */
+/* Container positioned off-screen for slide-in animation */
+.hero-container {
+  position: absolute;
+  top: 40%;
+  left: -25%;
+  transform: translateY(-50%);
+  max-width: 600px;
+  z-index: 10;
+}
+
+/* --- Typography --- */
+.heading-style-h3 {
+  font-size: clamp(2rem, 6vw, 4.25rem);
+  line-height: 1.05;
+  margin: 0 0 0.25rem 0;
+  display: inline-block;
+}
+
+.heading-style-h7 {
+  font-size: clamp(0.95rem, 1.6vw, 1.15rem);
+  line-height: 1.5;
+  max-width: 60ch;
+}
+
+.text-style-1 {
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
+}
+
+.text-style-muted {
+  opacity: 0.8;
+}
+
+.opacity80 {
+  opacity: 0.8;
+}
+
+/* --- Animation setup --- */
+.letter {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+.tricksword {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.home-hero_line {
+  overflow: visible;
+}
+
+.tricks {
+  overflow: visible;
+}
+
+.fade-up-0 .letter {
+  opacity: 0;
+  transform: translate3d(40vw, 0, 0);
+}
+
+.fade-up-1 .letter {
+  opacity: 0;
+  transform: translate3d(40vw, 0, 0);
+}
+
+.fade-up-2 .letter {
+  opacity: 0;
+  transform: translate3d(40vw, 0, 0);
+}
+
+.fade-up-3 .letter {
+  opacity: 0;
+  transform: translate3d(40vw, 0, 0);
+}
+
+.fade-up-5 .tricksword {
+  opacity: 0;
+  transform: translate3d(40vw, 0, 0);
+}
+
+/* Optional gradient text effect */
+.gradient-reverse {
+  background: linear-gradient(90deg, #ffffff 0%, #a0a6ff 40%, #ffffff 80%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* --- Bottom fade --- */
+:root {
+  --hero-fade: 160px;
+}
+
+.section-home-hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--hero-fade);
+  pointer-events: none;
+  z-index: 2;
+  background: linear-gradient(to bottom, rgba(11, 11, 11, 0) 0%, #0b0b0b 100%);
+}
+
+/* --- Counter wrapper --- */
+.counter-wrapper-3-digits {
+  min-width: 3ch;
+}
+
+.first-word-line {
+  display: inline-block;
+}
+
+/* Bottom fade for smooth transition */
+.home-hero_bottom-fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 160px;
+  pointer-events: none;
+  z-index: 2;
+  background: linear-gradient(to bottom, rgba(11, 11, 11, 0) 0%, #0b0b0b 100%);
+}
+
+.fade-up-0 .letter,
+.fade-up-1 .letter,
+.fade-up-2 .letter,
+.fade-up-3 .letter,
+.fade-up-5 .tricksword {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.hero-container {
+  z-index: 10 !important;
+}
+
+/* --- Text Colors --- */
+.heading-style-h3 {
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  line-height: 0.9;
+  /* letter-spacing: -2.5px; */
+  margin: 0;
+  font-weight: 700;
+  white-space: normal;
+  background-image: linear-gradient(-90deg, #fffc, #ffffff40);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Remove gradient for specific cases */
+.heading-style-h3.text-color-no-gradient {
+  -webkit-text-fill-color: inherit;
+  background-image: none;
+  background-clip: border-box;
+  color: #ffffff;
+}
+
+/* Gradient reverse variant */
+.heading-style-h3.gradient-reverse {
+  background-image: linear-gradient(90deg, #fffc, #ffffff40);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.heading-style-h3.about-hero {
+  -webkit-text-fill-color: inherit;
+  background-image: none;
+  background-clip: border-box;
+  font-size: 6rem;
+  overflow: hidden;
+}
+
+.heading-style-h3.contact-title.text-color-no-gradient.fade-up-contact-1.tricks {
+  overflow: hidden;
+}
+
+.heading-style-h3.fade-up.tricks {
+  color: var(--white);
+  -webkit-text-fill-color: inherit;
+  background-image: none;
+  background-clip: border-box;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.heading-style-h3.counter-wrapper {
+  text-align: right;
+  -webkit-text-fill-color: inherit;
+  background-image: none;
+  background-clip: border-box;
+  width: 7.5rem;
+  padding-right: 0.5rem;
+}
+
+.heading-style-h3.counter-wrapper._3digits {
+  width: 9.5rem;
+}
+
+.heading-style-h3.text-color-no-gradient {
+  float: none;
+  clear: none;
+  -webkit-text-fill-color: inherit;
+  background-image: none;
+  background-clip: border-box;
+  padding-bottom: 0;
+  position: static;
+}
+
+.heading-style-h3.text-color-no-gradient.text-padding-right {
+  padding-right: 1rem;
+}
+
+.heading-style-h3.text-color-no-gradient.opacity80 {
+  opacity: 0.8;
+}
+
+.heading-style-h3.text-color-no-gradient.opacity60 {
+  opacity: 0.6;
+}
+
+.heading-style-h3.counter-wrapper-2-digits {
+  text-align: right;
+  -webkit-text-fill-color: inherit;
+  background-image: none;
+  background-clip: border-box;
+  width: 6.6rem;
+  padding-right: 0.5rem;
+}
+
+.heading-style-h3.splash {
+  -webkit-text-fill-color: inherit;
+  background-image: none;
+  background-clip: border-box;
+  font-size: 9rem;
+}
+
+.heading-style-h3.splash.text-align-center.scale-up {
+  font-size: 14rem;
+}
+
+.heading-style-h3.text-padding-right {
+  padding-right: 1.5rem;
+}
+
+.heading-style-h3.faq {
+  color: var(--white-smoke);
+  -webkit-text-fill-color: inherit;
+  background-image: none;
+  background-clip: border-box;
+}
+
+.heading-style-h3.faq.fade-up.tricks {
+  color: var(--white-smoke);
+  overflow: visible;
+}
+
+.heading-style-h3.counter-wrapper-3-digits {
+  text-align: right;
+  -webkit-text-fill-color: inherit;
+  background-image: none;
+  background-clip: border-box;
+  width: 6.6rem;
+  padding-right: 0.5rem;
+}
+
+.heading-style-h3.counter-wrapper-3-digits.first-word-line {
+  width: 9rem;
+}
+
+.heading-style-h3.gradient-reverse {
+  background-image: linear-gradient(90deg, #fffc, #ffffff40);
+}
+
+.heading-style-h7 {
+  font-size: clamp(1rem, 1.6vw, 1.15rem);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.75);
+  max-width: 60ch;
+}
+
+.text-style-1 {
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}

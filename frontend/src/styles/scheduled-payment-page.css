@@ -1,0 +1,159 @@
+.scheduled-payment-page {
+  .cards {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr 1fr 1fr;
+    min-height: 500px;
+  }
+
+  .card-empty {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .entry-label {
+    font-size: 1.2rem;
+    display: block;
+  }
+  .amount {
+    font-size: 3rem;
+  }
+
+  .frequency {
+    margin-bottom: 32px;
+  }
+
+  .status {
+    margin-bottom: 16px;
+    display: inline;
+    max-width: 8rem;
+    font-size: 0.8rem;
+
+    &.active {
+      background-color: var(--green);
+    }
+
+    &.paused {
+      background-color: var(--yellow);
+    }
+  }
+
+  .info {
+    display: flex;
+    border-top: 1px solid rgb(255 255 255 /0.1);
+    padding: 12px;
+
+    .label {
+      color: var(--gray) !important;
+      display: block;
+      width: 120px;
+    }
+
+    .account {
+      padding: 4px 8px;
+      border-radius: 4px;
+
+      &:hover {
+        background-color: var(--sheer-gold);
+        cursor: pointer;
+      }
+    }
+  }
+
+  .payee {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+
+    .to {
+      grid-area: 1/1;
+    }
+
+    .acc {
+      grid-area: 2/1;
+    }
+
+    .rout {
+      grid-area: 3/1;
+    }
+
+    .name {
+      grid-area: 1/2;
+    }
+
+    .account_id {
+      grid-area: 2/2;
+    }
+
+    .routing_no {
+      grid-area: 3/2;
+    }
+  }
+
+  .controls {
+    position: absolute;
+    top: 10px;
+    right: 16px;
+  }
+
+  .dropdown.controls {
+    .dropdown-toggle {
+      text-align: center;
+
+      &::after {
+        display: none;
+      }
+
+      .bi {
+        margin-right: 0;
+      }
+    }
+
+    .dropdown-item {
+      .bi {
+        margin-right: 8px;
+      }
+    }
+  }
+
+  .add-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+      background-color: var(--bg-card-emp);
+      cursor: pointer;
+    }
+
+    .bi {
+      font-size: 2rem;
+    }
+  }
+}
+
+.create-form,
+.edit-form {
+  & form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .scheduled-payment-page {
+    .cards {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .scheduled-payment-page {
+    .cards {
+      grid-template-columns: 1fr;
+    }
+  }
+}

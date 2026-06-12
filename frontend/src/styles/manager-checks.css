@@ -1,0 +1,120 @@
+.md-check-edit-modal {
+  .md-check-image-wrapper {
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 16px;
+    background: #f9f9f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-direction: column;
+    gap: 20px;
+
+    .md-check-image {
+      aspect-ratio: 16/9;
+      object-fit: contain;
+      background-color: rgb(0 0 0 / 0.1);
+    }
+  }
+
+  .md-check-amount-section {
+    align-items: flex-end;
+    height: 100%;
+
+    .md-check-dollar {
+      margin-bottom: 10px;
+    }
+  }
+
+  .md-check-form-additional {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "inst inst"
+      "routing account"
+      "check .";
+
+    .instruction {
+      grid-area: inst;
+    }
+    .routing_no {
+      grid-area: routing;
+    }
+
+    .account_no {
+      grid-area: account;
+    }
+
+    .check {
+      grid-area: check;
+    }
+  }
+}
+
+.actually-checks-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+@media (max-width: 1200px) {
+  .actually-checks-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+  .md-check-edit-modal {
+    .md-check-form-additional {
+      grid-template-columns: 1fr;
+
+      grid-template-areas:
+        "inst"
+        "routing"
+        "account"
+        "check";
+    }
+  }
+  .actually-checks-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+.btn-approve {
+  background: rgba(34, 197, 94, 0.2);
+  border-color: rgba(34, 197, 94, 0.3);
+  color: #4ade80;
+
+  &.light:hover {
+    background: rgba(34, 197, 94, 0.3);
+    border-color: rgba(34, 197, 94, 0.6);
+  }
+
+  &:hover {
+    background: rgba(34, 197, 94, 0.4);
+    border-color: rgba(34, 197, 94, 0.6);
+  }
+}
+
+.btn-deny {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #f87171;
+
+  &.light:hover {
+    background: rgba(239, 68, 68, 0.3);
+    border-color: rgba(239, 68, 68, 0.6);
+  }
+
+  &:hover {
+    background: rgba(239, 68, 68, 0.4);
+    border-color: rgba(239, 68, 68, 0.6);
+  }
+}
+
+button:disabled.md-btn,
+button:disabled.md-btn:hover {
+  background-color: var(--bg-component-demp);
+  color: var(--gray);
+  border-color: var(--bg-card);
+  cursor: default;
+}

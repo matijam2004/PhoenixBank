@@ -1,0 +1,137 @@
+/* ============================================
+   FEATURES SECTION
+   Grid of feature cards with icons
+   ============================================ */
+
+/* -------------------- SECTION CONTAINER -------------------- */
+/* Full-height section with dark background */
+.features-section {
+  position: relative;
+  background: #0b0b0b;
+  padding: 8rem 2rem;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+}
+
+/* Centered container for all content */
+.features-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* -------------------- SECTION TITLE -------------------- */
+/* Large centered title that fades in on scroll */
+.features-title {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1.2;
+  color: #fff;
+  text-align: center;
+  margin: 0 0 4rem 0;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 0;
+  font-weight: 400;
+}
+
+/* -------------------- FEATURES GRID -------------------- */
+/* Three-column grid layout for feature cards */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+/* -------------------- FEATURE CARDS -------------------- */
+/* Individual feature card with glass effect */
+.feature-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 2.5rem;
+  transition: all 0.4s ease;
+  opacity: 0;
+}
+
+/* Lighter background and lift on hover */
+.feature-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-4px);
+}
+
+/* Large card spanning 2 columns and 2 rows */
+.feature-large {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+/* Wide card spanning 2 columns */
+.feature-wide {
+  grid-column: span 2;
+}
+
+/* -------------------- CARD CONTENT -------------------- */
+/* Icon container at top of card */
+.feature-icon-wrapper {
+  width: 56px;
+  height: 56px;
+  margin-bottom: 1.5rem;
+}
+
+/* SVG icon styling */
+.feature-icon {
+  width: 100%;
+  height: 100%;
+  color: rgba(255, 255, 255, 0.9);
+  stroke-width: 1.5;
+}
+
+/* Feature title */
+.feature-card h3 {
+  font-size: 1.5rem;
+  color: #fff;
+  margin: 0 0 1rem 0;
+  font-weight: 600;
+}
+
+/* Feature description */
+.feature-card p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+}
+
+/* -------------------- RESPONSIVE DESIGN -------------------- */
+/* Tablet layout */
+@media (max-width: 1024px) {
+  /* Two-column grid */
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Large cards span full width but only one row */
+  .feature-large {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+}
+
+/* Mobile layout */
+@media (max-width: 768px) {
+  /* Single column layout */
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* All cards take full width */
+  .feature-large,
+  .feature-wide {
+    grid-column: span 1;
+  }
+}

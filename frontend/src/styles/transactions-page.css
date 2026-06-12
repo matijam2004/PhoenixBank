@@ -1,0 +1,79 @@
+.transactions-page {
+  .filter-panel {
+    margin-bottom: 20px;
+  }
+
+  #filter-accordion {
+    .accordion-header {
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+
+      .search-bar {
+        max-width: max(50%, 500px);
+        margin: 0 !important;
+      }
+
+      .accordion-button {
+        background-color: var(--bg-card-emp);
+        display: flex;
+        height: 48px;
+        width: 48px;
+        padding: 8px;
+        text-align: center;
+        border-radius: 100px;
+        justify-content: center;
+        align-items: center;
+
+        &.btn::after {
+          display: none;
+        }
+
+        .bi {
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  .accordion-body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .date-range {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .amount-range {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .type-checkboxes {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .transactions-page {
+    .filter-panel {
+      padding: 0;
+    }
+
+    .date-range,
+    .amount-range {
+      flex-wrap: wrap;
+    }
+  }
+}

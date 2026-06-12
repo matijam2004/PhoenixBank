@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "@react-google-maps/api": "^2.20.7",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "mapbox-gl": "^3.16.0",
+    "react-webcam": "^7.2.0"
+  },
+  "devDependencies": {
+    "@types/mapbox-gl": "^3.4.1"
+  }
+}

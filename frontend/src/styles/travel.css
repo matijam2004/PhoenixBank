@@ -1,0 +1,639 @@
+/* Phoenix Bank Travel Page - Luxury travel services design */
+
+:root {
+  --gold: #c9a961;
+  --white: #ffffff;
+  --black: #000000;
+  --insignia-gold: #d7c29a;
+  --insignia-bg: #fafafa;
+  --dark-bg: #0a0a0a;
+  --light-text: #e0e0e0;
+}
+
+/* PAGE CONTAINER */
+.travel-page {
+  background: #000000;
+  color: #ffffff;
+  font-family: "Garamond", "Times New Roman", serif;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* HERO SECTION */
+.travel-hero {
+  position: relative;
+  min-height: 100vh;
+  width: 100vw;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.travel-hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.travel-video-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.6);
+  display: block;
+}
+
+.travel-video-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.5) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.travel-hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 900px;
+  padding: 0 60px;
+}
+
+.travel-hero-title {
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 30px;
+  color: var(--white);
+  letter-spacing: -0.02em;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.travel-hero-subtitle {
+  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+  line-height: 1.8;
+  margin-bottom: 40px;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 300;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+}
+
+.travel-hero-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.travel-cta-button {
+  padding: 16px 40px;
+  font-size: 1rem;
+  font-weight: 500;
+  border: 1px solid var(--gold);
+  background: transparent;
+  color: var(--gold);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: "Garamond", "Times New Roman", serif;
+}
+
+.travel-cta-button.primary {
+  background: var(--gold);
+  color: var(--black);
+}
+
+.travel-cta-button.primary:hover {
+  background: #b8954f;
+  border-color: #b8954f;
+}
+
+.travel-cta-button.secondary:hover {
+  background: var(--gold);
+  color: var(--black);
+}
+
+/* Text animations */
+.animate-text {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 1s ease forwards;
+}
+
+.travel-hero-title.animate-text {
+  animation-delay: 0.2s;
+}
+
+.travel-hero-subtitle.animate-text {
+  animation-delay: 0.5s;
+}
+
+.travel-hero-buttons.animate-text {
+  animation-delay: 0.8s;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* SECTION STYLES */
+.travel-page section:not(.travel-hero) {
+  padding: 100px 60px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.travel-hero {
+  padding: 0;
+  max-width: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+.section-title {
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--white);
+  letter-spacing: -0.01em;
+}
+
+.section-kicker {
+  text-align: center;
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  color: var(--light-text);
+  margin-bottom: 60px;
+  font-weight: 300;
+}
+
+.section-text {
+  text-align: center;
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  line-height: 1.8;
+  color: var(--light-text);
+  max-width: 800px;
+  margin: 0 auto 60px;
+  font-weight: 300;
+}
+
+/* SERVICES SECTION */
+.travel-services-section {
+  background: var(--dark-bg);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  margin-top: 60px;
+}
+
+.service-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(201, 169, 97, 0.2);
+  padding: 40px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.service-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.service-icon {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 20px;
+  padding: 12px 20px;
+  border: 1px solid var(--gold);
+  display: inline-block;
+  font-family: "Garamond", "Times New Roman", serif;
+}
+
+.service-title {
+  font-size: 1.5rem;
+  color: var(--white);
+  margin-bottom: 15px;
+  font-weight: 400;
+  font-family: "Garamond", "Times New Roman", serif;
+}
+
+.service-description {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--light-text);
+  font-weight: 300;
+}
+
+/* DESTINATIONS SECTION */
+.destinations-section {
+  background: var(--black);
+}
+
+.category-tabs {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 60px;
+}
+
+.category-tab {
+  padding: 12px 30px;
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Garamond", "Times New Roman", serif;
+  font-size: 1rem;
+  text-transform: capitalize;
+  font-weight: 400;
+}
+
+.category-tab:hover {
+  background: rgba(201, 169, 97, 0.1);
+}
+
+.category-tab.active {
+  background: var(--gold);
+  color: var(--black);
+  border-color: var(--gold);
+}
+
+.destinations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.destination-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(201, 169, 97, 0.2);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.destination-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.destination-image {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+}
+
+.destination-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.destination-card:hover .destination-image img {
+  transform: scale(1.1);
+}
+
+.destination-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.7) 100%);
+  display: flex;
+  align-items: flex-end;
+  padding: 20px;
+}
+
+.destination-price {
+  color: var(--gold);
+  font-size: 1.1rem;
+  font-weight: 500;
+  font-family: "Garamond", "Times New Roman", serif;
+}
+
+.destination-content {
+  padding: 30px;
+}
+
+.destination-name {
+  font-size: 1.8rem;
+  color: var(--white);
+  margin-bottom: 8px;
+  font-weight: 400;
+  font-family: "Garamond", "Times New Roman", serif;
+}
+
+.destination-location {
+  font-size: 1rem;
+  color: var(--gold);
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 400;
+}
+
+.destination-description {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--light-text);
+  margin-bottom: 20px;
+  font-weight: 300;
+}
+
+.destination-button {
+  width: 100%;
+  padding: 14px;
+  background: transparent;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: "Garamond", "Times New Roman", serif;
+}
+
+.destination-button:hover {
+  background: var(--gold);
+  color: var(--black);
+}
+
+/* BENEFITS SECTION */
+.travel-benefits-section {
+  background: var(--dark-bg);
+}
+
+.benefits-list {
+  max-width: 900px;
+  margin: 60px auto 0;
+}
+
+.benefit-item {
+  display: flex;
+  gap: 30px;
+  padding: 40px 0;
+  border-bottom: 1px solid rgba(201, 169, 97, 0.2);
+}
+
+.benefit-item:last-child {
+  border-bottom: none;
+}
+
+.benefit-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.benefit-content {
+  flex: 1;
+}
+
+.benefit-title {
+  font-size: 1.5rem;
+  color: var(--white);
+  margin-bottom: 10px;
+  font-weight: 400;
+  font-family: "Garamond", "Times New Roman", serif;
+}
+
+.benefit-description {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--light-text);
+  font-weight: 300;
+}
+
+/* Animation classes */
+.animate-slide-up {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: none;
+}
+
+.animate-visible .animate-slide-up {
+  animation: slideUpBounce 1s ease-out forwards;
+}
+
+.animate-fade-in {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: none;
+}
+
+.animate-visible .animate-fade-in {
+  animation: fadeInGrow 1.2s ease-out 0.3s forwards;
+}
+
+@keyframes slideUpBounce {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  60% {
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInGrow {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* TESTIMONIAL SECTION */
+.travel-testimonial-section {
+  background: var(--black);
+  text-align: center;
+  padding: 100px 60px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.testimonial-content {
+  max-width: 800px;
+  margin: 60px auto 0;
+  width: 100%;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.testimonial-quote {
+  padding: 60px 40px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(201, 169, 97, 0.3);
+  display: block;
+  width: 100%;
+}
+
+.quote-text {
+  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+  line-height: 1.8;
+  color: #e0e0e0;
+  font-style: italic;
+  margin-bottom: 30px;
+  font-weight: 300;
+  font-family: "Garamond", "Times New Roman", serif;
+  display: block;
+}
+
+.quote-author {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+}
+
+.author-name {
+  font-size: 1.1rem;
+  color: #ffffff;
+  font-weight: 500;
+  font-family: "Garamond", "Times New Roman", serif;
+  display: block;
+}
+
+.author-title {
+  font-size: 0.9rem;
+  color: #c9a961;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 400;
+  display: block;
+}
+
+/* CTA SECTION */
+.travel-cta-section {
+  background: var(--dark-bg);
+  text-align: center;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+
+.cta-button {
+  padding: 16px 40px;
+  font-size: 1rem;
+  font-weight: 500;
+  border: 1px solid var(--gold);
+  background: var(--gold);
+  color: var(--black);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: "Garamond", "Times New Roman", serif;
+}
+
+.cta-button:hover {
+  background: #b8954f;
+  border-color: #b8954f;
+}
+
+.cta-button.secondary {
+  background: transparent;
+  color: var(--gold);
+}
+
+.cta-button.secondary:hover {
+  background: var(--gold);
+  color: var(--black);
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+  .travel-hero-content {
+    padding: 0 30px;
+  }
+
+  section {
+    padding: 60px 30px;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .destinations-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .benefit-item {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+
+  .travel-testimonial-section {
+    padding: 60px 30px;
+  }
+
+  .testimonial-quote {
+    padding: 40px 20px;
+  }
+
+  .quote-text {
+    font-size: 1.1rem;
+  }
+}

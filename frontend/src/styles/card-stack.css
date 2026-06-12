@@ -1,0 +1,204 @@
+/* ============================================
+   3D CARD STACK ANIMATION
+   Rotating credit cards with shine effect
+   ============================================ */
+
+/* -------------------- BASE RESETS -------------------- */
+/* Ensure consistent box-sizing across all browsers */
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/* Basic body styling with light theme defaults */
+/* Note: This only applies to elements within card-stack, not global body */
+.cards__parallax body {
+    margin: 0;
+    min-height: 100%;
+    background-color: transparent;
+    font-family: soleil, sans-serif;
+    color: #304761;
+    font-size: 1rem;
+    line-height: 1.5;
+    font-weight: 300;
+}
+
+/* -------------------- 3D CARD CONTAINER -------------------- */
+/* Perspective container for 3D card rotation effect */
+.cards__parallax {
+    position: absolute;
+    top: 15.4375rem;
+    right: 9.6875rem;
+    display: flex;
+    width: 30rem;
+    height: 30rem;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    perspective: 93.75rem;
+    font-size: 1rem;
+    background: transparent;
+    overflow: visible; /* Allow cards to rotate outside bounds */
+}
+
+/* Hero cards specific styling */
+.cards__parallax.hero-cards {
+    background: transparent;
+}
+
+/* Individual card with background image */
+.cards__card {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    border-radius: 1.25rem;
+    background-image: url("https://assets.website-files.com/62fa5980cd922182416f3647/62fb8fdf8ac57081afa47938_Card-Orange.svg");
+    background-position: 0 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    transform: translate(0, 0);
+}
+
+/* First card with Phoenix card image */
+.cards__card.mod--1 {
+    background-image: url("../../images/phoenix-credit-card.png");
+    background-position: 0 0;
+    background-size: cover;
+    background-color: transparent;
+}
+
+/* Second card with Business Elite card image */
+.cards__card.mod--2 {
+    background-image: url("../../images/BusinessClassic.png");
+    background-position: 0 0;
+    background-size: cover;
+    background-color: transparent;
+}
+
+/* Content layer for card */
+.cards__card-content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    flex: 0 0 auto;
+    background: transparent;
+}
+
+/* -------------------- CARD POSITIONING -------------------- */
+/* Wrapper for 3D transforms and positioning */
+.cards__card-wrap {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 23.1em;
+    height: 13.1em;
+    flex: 0 0 auto;
+    background: transparent;
+}
+
+/* First card: rotated and positioned top-left */
+.cards__card-wrap.mod--1 {
+    left: -3.1em;
+    z-index: 2;
+    transform: rotateX(-4deg) rotateY(-32deg) rotateZ(37deg) perspective(93.75rem);
+    transform-style: preserve-3d;
+}
+
+/* Second card: rotated and positioned bottom-right */
+.cards__card-wrap.mod--2 {
+    left: 7.7em;
+    top: 11.3em;
+    transform: rotateX(34deg) rotateY(2deg) rotateZ(-35deg);
+    transform-style: preserve-3d;
+}
+
+/* -------------------- SHADOW EFFECT -------------------- */
+/* Skewed shadow beneath cards for depth */
+.cards__shadow {
+    position: absolute;
+    left: 17.25rem;
+    bottom: 0.875rem;
+    z-index: 0;
+    display: none; /* Hide shadow to remove gray elements */
+    opacity: 0;
+    transform: skew(0deg, -10deg) rotate(-36deg);
+    filter: brightness(0) contrast(2);
+    mix-blend-mode: multiply;
+}
+
+/* -------------------- SHINE ANIMATION -------------------- */
+/* Animated light sweep across card surface */
+.card__shine {
+    position: absolute;
+    top: -50%;
+    left: -150%;
+    width: 60%;
+    height: 200%;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.6) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    filter: blur(20px);
+    transform: skewX(-20deg);
+    animation: shine-sweep 3s infinite;
+}
+
+/* Delay second card's shine animation */
+.card__shine.mod--2 {
+    animation-delay: 1s;
+}
+
+/* Container to clip shine effect within card bounds */
+.card__shine-wrap {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    opacity: var(--shine-alpha, 0.6);
+}
+
+/* Keyframes for light sweep animation */
+@keyframes shine-sweep {
+    0% {
+        left: -150%;
+    }
+    50% {
+        left: 150%;
+    }
+    100% {
+        left: 150%;
+    }
+}
+
+/* -------------------- RESPONSIVE DESIGN -------------------- */
+/* Tablet adjustments */
+@media screen and (max-width: 767px) {
+    /* Smaller card stack */
+    .cards__parallax {
+        width: 26.8rem;
+        height: 22.5rem;
+        margin-top: 4.5rem;
+        font-size: 0.65rem;
+    }
+
+    /* Smaller border radius */
+    .cards__card {
+        border-radius: 0.8rem;
+    }
+}
+
+/* Mobile adjustments */
+@media screen and (max-width: 479px) {
+    /* Much smaller card stack */
+    .cards__parallax {
+        width: 20rem;
+        height: 17rem;
+        font-size: 0.5rem;
+    }
+}

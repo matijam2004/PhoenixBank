@@ -1,0 +1,177 @@
+/* ============================================
+   METRICS SECTION
+   LTV / CAC comparison with divider
+   ============================================ */
+
+/* -------------------- SECTION CONTAINER -------------------- */
+/* Full-height dark section for metrics display */
+.metrics-section {
+  position: relative;
+  min-height: 100vh;
+  background: #0b0b0b;
+  display: flex;
+  align-items: center;
+  padding: 4rem 2rem;
+  overflow: hidden;
+  width: 100%;
+  margin: 0;
+}
+
+/* -------------------- MAIN LAYOUT -------------------- */
+/* Three-column grid: LTV | Slash | CAC */
+.metrics-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+/* -------------------- LTV AND CAC SECTIONS -------------------- */
+/* Individual metric containers that fade in */
+.metrics-ltv,
+.metrics-cac {
+  opacity: 0;
+  transform-origin: center;
+}
+
+/* Giant gradient number */
+.metrics-giant {
+  font-size: clamp(4rem, 12vw, 10rem);
+  line-height: 0.9;
+  font-weight: 700;
+  margin: 0 0 2rem 0;
+  letter-spacing: -4px;
+  background: linear-gradient(-90deg, #fffc, #ffffff40);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Content wrapper below number */
+.metrics-content {
+  max-width: 500px;
+}
+
+/* Description text */
+.metrics-desc {
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0 0 2rem 0;
+}
+
+/* Gold highlighted text within description */
+.highlight {
+  background: rgba(212, 175, 55, 0.2);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: #d4af37;
+  font-weight: 600;
+}
+
+/* Monospace formula display */
+.metrics-formula {
+  font-size: 0.85rem;
+  font-family: 'Courier New', monospace;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* -------------------- SLASH DIVIDER -------------------- */
+/* Center column containing vertical separator */
+.metrics-slash-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 400px;
+}
+
+/* Animated vertical line with gradient */
+.metrics-slash {
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.3) 20%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0.3) 80%,
+    transparent 100%
+  );
+  transform: scaleY(0);
+  transform-origin: top;
+  opacity: 0;
+  border-radius: 2px;
+}
+
+/* -------------------- FEATURE LIST -------------------- */
+/* List of features with hover effects */
+.metrics-features {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0 0;
+}
+
+/* Individual feature item */
+.metrics-features li {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.85);
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Remove border from last item */
+.metrics-features li:last-child {
+  border-bottom: none;
+}
+
+/* Gold highlight and indent on hover */
+.metrics-features li:hover {
+  color: #d4af37;
+  padding-left: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+/* -------------------- RESPONSIVE DESIGN -------------------- */
+/* Tablet and below */
+@media (max-width: 1024px) {
+  /* Stack vertically instead of horizontal */
+  .metrics-container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  /* Rotate slash to horizontal */
+  .metrics-slash-container {
+    min-height: 100px;
+    transform: rotate(90deg);
+  }
+
+  /* Center content */
+  .metrics-ltv,
+  .metrics-cac {
+    text-align: center;
+  }
+
+  .metrics-content {
+    margin: 0 auto;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  /* Smaller giant numbers */
+  .metrics-giant {
+    font-size: clamp(3rem, 10vw, 6rem);
+  }
+
+  /* Smaller description text */
+  .metrics-desc {
+    font-size: 1rem;
+  }
+}

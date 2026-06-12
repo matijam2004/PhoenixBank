@@ -1,0 +1,791 @@
+/* ============================================
+   ATM LOCATOR PAGE STYLES
+   Interactive map with location search and routing
+   ============================================ */
+
+/* -------------------- BASE & LAYOUT -------------------- */
+/* Full-screen page container with dark theme */
+.atm-locator-page {
+  min-height: 100vh;
+  background: #000;
+  color: #fff;
+  font-family: "Garamond", serif;
+}
+
+/* Hero banner at top of page with gold title */
+.atm-hero {
+  padding: 100px 0 0 0;
+  text-align: center;
+  background: linear-gradient(180deg, #0a0a0a 0%, #000 100%);
+  border-bottom: 1px solid rgba(218, 165, 32, 0.1);
+}
+
+/* Large uppercase page title */
+.atm-hero h1 {
+  font-size: 3rem;
+  font-weight: 300;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #daa520;
+  margin-bottom: 1rem;
+}
+
+/* Subtitle description text */
+.atm-hero p {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 1px;
+  font-weight: 300;
+}
+
+/* Two-column layout: sidebar on left, map on right */
+.atm-layout {
+  display: flex;
+  height: calc(100vh - 250px);
+}
+
+/* -------------------- SIDEBAR -------------------- */
+/* Left sidebar containing search, filters, and location list */
+.atm-sidebar {
+  width: 400px;
+  background: #0a0a0a;
+  border-right: 1px solid rgba(218, 165, 32, 0.1);
+  overflow-y: auto;
+  flex-shrink: 0;
+  height: 100%;
+}
+
+/* Custom scrollbar styling for sidebar */
+.atm-sidebar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.atm-sidebar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.atm-sidebar::-webkit-scrollbar-thumb {
+  background: rgba(218, 165, 32, 0.3);
+  border-radius: 2px;
+}
+
+/* Section wrapper for each sidebar segment */
+.sidebar-section {
+  padding: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Section headers like "SEARCH" and "FILTER" */
+.sidebar-section h2 {
+  font-size: 0.9rem;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 1.5rem;
+}
+
+/* -------------------- SEARCH & INPUTS -------------------- */
+/* Wrapper for search input with dropdown suggestions */
+.search-wrapper {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+/* Address search input with Google Places autocomplete */
+.location-search-input {
+  width: 100%;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(218, 165, 32, 0.2);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 0.95rem;
+  font-family: "Garamond", serif;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+/* Gold border glow when focused */
+.location-search-input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.05);
+  border-color: #daa520;
+  box-shadow: 0 0 0 3px rgba(218, 165, 32, 0.1);
+}
+
+/* Lighter placeholder text */
+.location-search-input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* Dropdown list of Google Places autocomplete suggestions */
+.search-suggestions {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  right: 0;
+  background: #1a1a1a;
+  border: 1px solid rgba(218, 165, 32, 0.2);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  z-index: 100;
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+/* Individual suggestion item in dropdown */
+.suggestion-item {
+  padding: 0.9rem 1rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  transition: all 0.2s ease;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Remove border from last suggestion */
+.suggestion-item:last-child {
+  border-bottom: none;
+}
+
+/* Gold highlight on hover */
+.suggestion-item:hover {
+  background: rgba(218, 165, 32, 0.08);
+  color: #daa520;
+}
+
+/* -------------------- BUTTONS -------------------- */
+/* "Use My Location" button with geolocation icon */
+.location-button {
+  width: 100%;
+  padding: 0.9rem;
+  background: transparent;
+  border: 1px solid rgba(218, 165, 32, 0.3);
+  border-radius: 8px;
+  color: #daa520;
+  font-size: 0.9rem;
+  font-weight: 300;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Garamond", serif;
+}
+
+/* Gold background highlight on hover */
+.location-button:hover {
+  background: rgba(218, 165, 32, 0.1);
+  border-color: #daa520;
+}
+
+/* Faded when loading or disabled */
+.location-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Gold gradient button for getting directions */
+.directions-button {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.8rem;
+  background: linear-gradient(135deg, #daa520 0%, #c99a1c 100%);
+  border: none;
+  border-radius: 6px;
+  color: #000;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Garamond", serif;
+}
+
+/* Lift effect on hover */
+.directions-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(218, 165, 32, 0.4);
+}
+
+/* Clear route button */
+.clear-btn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  font-family: "Garamond", serif;
+  letter-spacing: 0.5px;
+}
+
+/* Brighter white on hover */
+.clear-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+}
+
+/* -------------------- ROUTE DETAILS -------------------- */
+/* Box showing distance and duration when route is active */
+.route-details {
+  margin: 2rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, rgba(218, 165, 32, 0.1) 0%, rgba(218, 165, 32, 0.05) 100%);
+  border: 1px solid rgba(218, 165, 32, 0.3);
+  border-radius: 10px;
+}
+
+/* Header row with title and clear button */
+.route-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.2rem;
+}
+
+/* "Route Information" title */
+.route-header h3 {
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: #daa520;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+/* Grid layout for distance and duration */
+.route-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+/* Individual info box for distance or duration */
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 0.8rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  border: 1px solid rgba(218, 165, 32, 0.15);
+}
+
+/* Label like "DISTANCE" or "DURATION" */
+.info-label {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Actual value like "2.5 mi" or "8 mins" */
+.info-value {
+  font-size: 1.1rem;
+  color: #daa520;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+/* -------------------- RADIUS FILTER -------------------- */
+/* Label above radius dropdown */
+.filter-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 0.8rem;
+}
+
+/* Dropdown to select search radius (5, 10, 25, 50 miles) */
+.radius-select {
+  width: 100%;
+  padding: 0.9rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(218, 165, 32, 0.2);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 0.95rem;
+  font-family: "Garamond", serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Dark background for dropdown options */
+.radius-select option {
+  background: #1a1a1a;
+  color: #fff;
+  padding: 0.5rem;
+}
+
+/* Highlight on hover */
+.radius-select:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: #daa520;
+}
+
+/* Gold border when focused */
+.radius-select:focus {
+  outline: none;
+  border-color: #daa520;
+  box-shadow: 0 0 0 3px rgba(218, 165, 32, 0.1);
+}
+
+/* Display current radius value below dropdown */
+.radius-display {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: #daa520;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+/* -------------------- LOCATIONS LIST -------------------- */
+/* Container for the scrollable list of ATM/branch locations */
+.locations-section {
+  padding: 0;
+  border-bottom: none;
+}
+
+/* Header showing "LOCATIONS" with result count */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 2rem 1rem;
+}
+
+/* "LOCATIONS" title */
+.section-header h2 {
+  margin: 0;
+}
+
+/* Badge showing number of results */
+.count-badge {
+  background: rgba(218, 165, 32, 0.15);
+  color: #daa520;
+  padding: 0.4rem 0.9rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  border: 1px solid rgba(218, 165, 32, 0.3);
+}
+
+/* List of location cards */
+.locations-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Individual location card */
+.location-card {
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+/* Gold accent bar on left side */
+.location-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: transparent;
+  transition: background 0.3s ease;
+}
+
+/* Subtle background on hover */
+.location-card:hover {
+  background: rgba(218, 165, 32, 0.03);
+}
+
+/* Show gold bar on hover */
+.location-card:hover::before {
+  background: #daa520;
+}
+
+/* Highlighted state when location is selected */
+.location-card.active {
+  background: rgba(218, 165, 32, 0.08);
+}
+
+/* Show gold bar when active */
+.location-card.active::before {
+  background: #daa520;
+}
+
+/* Top row with location name and ATM/Branch badge */
+.location-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.8rem;
+  gap: 1rem;
+}
+
+/* Location name */
+.location-header h3 {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #fff;
+  margin: 0;
+  letter-spacing: 0.5px;
+  flex: 1;
+}
+
+/* "ATM" or "BRANCH" label */
+.type-label {
+  background: rgba(218, 165, 32, 0.15);
+  color: #daa520;
+  padding: 0.3rem 0.7rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border: 1px solid rgba(218, 165, 32, 0.3);
+  white-space: nowrap;
+}
+
+/* Street address */
+.location-address {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0.4rem 0;
+  letter-spacing: 0.3px;
+}
+
+/* Business hours */
+.location-hours {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0.4rem 0;
+  letter-spacing: 0.3px;
+}
+
+/* Distance from user location */
+.location-distance {
+  font-size: 0.9rem;
+  color: #daa520;
+  margin: 0.6rem 0;
+  font-weight: 400;
+}
+
+/* -------------------- MAP SECTION -------------------- */
+/* Right side of layout showing Google Maps */
+.map-section {
+  flex: 1;
+  position: relative;
+  background: #000;
+}
+
+/* -------------------- INFO WINDOW / POPUP -------------------- */
+/* Custom popup that appears when clicking map marker */
+.premium-popup-content {
+  padding: 1.2rem;
+  color: #fff;
+}
+
+/* Location name in popup */
+.premium-popup-content h3 {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #fff;
+  margin: 0 0 0.6rem 0;
+  letter-spacing: 0.5px;
+}
+
+/* ATM/BRANCH badge in popup */
+.popup-type {
+  display: inline-block;
+  background: rgba(218, 165, 32, 0.15);
+  color: #daa520;
+  padding: 0.3rem 0.7rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border: 1px solid rgba(218, 165, 32, 0.3);
+  margin-bottom: 0.8rem;
+}
+
+/* Address in popup */
+.popup-address {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0.4rem 0;
+}
+
+/* Hours in popup */
+.popup-hours {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0.4rem 0 1rem 0;
+}
+
+/* Directions button in popup */
+.popup-directions {
+  width: 100%;
+  padding: 0.7rem;
+  background: linear-gradient(135deg, #daa520 0%, #c99a1c 100%);
+  border: none;
+  border-radius: 6px;
+  color: #000;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Garamond", serif;
+}
+
+/* Lift effect on hover */
+.popup-directions:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(218, 165, 32, 0.4);
+}
+
+/* -------------------- MOBILE TOGGLE -------------------- */
+/* Button to show/hide sidebar on mobile devices */
+.mobile-toggle {
+  display: none;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+  padding: 0.8rem 1.5rem;
+  background: #daa520;
+  border: none;
+  border-radius: 8px;
+  color: #000;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  font-family: "Garamond", serif;
+  transition: all 0.3s ease;
+}
+
+/* Lift effect on hover */
+.mobile-toggle:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(218, 165, 32, 0.4);
+}
+
+.visit-button {
+  margin-top: 1rem;
+}
+
+/* -------------------- RESPONSIVE DESIGN -------------------- */
+/* Large desktop adjustments */
+@media (max-width: 1200px) {
+  /* Narrower sidebar */
+  .atm-sidebar {
+    width: 360px;
+  }
+
+  /* Smaller title */
+  .atm-hero h1 {
+    font-size: 2.8rem;
+  }
+}
+
+/* Tablet landscape adjustments */
+@media (max-width: 1024px) {
+  /* Even narrower sidebar */
+  .atm-sidebar {
+    width: 340px;
+  }
+
+  /* Smaller title and subtitle */
+  .atm-hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .atm-hero p {
+    font-size: 1rem;
+  }
+
+  /* Reduce section padding */
+  .sidebar-section {
+    padding: 1.5rem;
+  }
+}
+
+/* Tablet portrait and mobile */
+@media (max-width: 768px) {
+  /* Show mobile toggle button */
+  .mobile-toggle {
+    display: block;
+  }
+
+  /* Add padding to accommodate navbar */
+  .atm-hero {
+    padding: 100px 0 0 0;
+  }
+
+  /* Smaller hero text */
+  .atm-hero h1 {
+    font-size: 2rem;
+    letter-spacing: 2px;
+  }
+
+  .atm-hero p {
+    font-size: 0.95rem;
+  }
+
+  /* Stack layout vertically */
+  .atm-layout {
+    flex-direction: column;
+    height: calc(100vh - 200px);
+    position: relative;
+  }
+
+  /* Full-screen slide-in sidebar */
+  .atm-sidebar {
+    padding-top: 70px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    max-width: 100%;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 999;
+    border-right: none;
+    box-shadow: 2px 0 24px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Slide sidebar in when open */
+  .atm-sidebar.open {
+    transform: translateX(0);
+  }
+
+  /* Reduce padding on smaller screens */
+  .sidebar-section {
+    padding: 1.25rem;
+  }
+
+  .location-card {
+    padding: 1.25rem;
+  }
+
+  .route-details {
+    margin: 1.25rem;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  /* Even smaller hero */
+  .atm-hero {
+    padding: 100px 0 0;
+  }
+
+  .atm-hero h1 {
+    font-size: 1.6rem;
+    letter-spacing: 1.5px;
+  }
+
+  .atm-hero p {
+    font-size: 0.85rem;
+  }
+
+  /* Smaller toggle button */
+  .mobile-toggle {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.85rem;
+  }
+
+  /* Compact sidebar sections */
+  .sidebar-section {
+    padding: 1rem;
+  }
+
+  .sidebar-section h2 {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Smaller inputs and buttons */
+  .location-search-input {
+    padding: 0.85rem;
+    font-size: 0.9rem;
+  }
+
+  .location-button {
+    padding: 0.85rem;
+    font-size: 0.85rem;
+  }
+
+  /* Compact location cards */
+  .location-card {
+    padding: 1rem;
+  }
+
+  .location-header h3 {
+    font-size: 0.95rem;
+  }
+
+  .type-label {
+    font-size: 0.65rem;
+    padding: 0.25rem 0.6rem;
+  }
+
+  .location-address,
+  .location-hours,
+  .location-distance {
+    font-size: 0.8rem;
+  }
+
+  /* Smaller directions button */
+  .directions-button {
+    padding: 0.7rem;
+    font-size: 0.8rem;
+  }
+
+  /* Compact route details */
+  .route-details {
+    margin: 1rem;
+    padding: 1.25rem;
+  }
+
+  .route-header h3 {
+    font-size: 0.85rem;
+  }
+
+  .info-value {
+    font-size: 1rem;
+  }
+
+  .info-label {
+    font-size: 0.7rem;
+  }
+}
+
+/* Tablet landscape exception */
+@media (min-width: 769px) and (max-width: 1024px) {
+  /* Keep horizontal layout on larger tablets */
+  .atm-layout {
+    flex-direction: row;
+  }
+
+  .atm-sidebar {
+    width: 320px;
+  }
+}

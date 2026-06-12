@@ -1,0 +1,97 @@
+/* ============================================
+   PAGE TRANSITION ANIMATION
+   Diagonal wipe with gold edge glow
+   ============================================ */
+
+/* -------------------- DIAGONAL PANELS -------------------- */
+/* Large panels that slide in from corners during page transitions */
+.diagonal-panel {
+  position: fixed;
+  width: 300vw;
+  height: 300vh;
+  z-index: 9999;
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* -------------------- TOP-LEFT PANEL -------------------- */
+/* Panel slides in from top-left corner */
+.diagonal-panel-1 {
+  top: -100%;
+  left: -100%;
+  background: linear-gradient(
+    135deg,
+    #000 0%,
+    #0d0d0d 30%,
+    #1a1a1a 50%,
+    #0d0d0d 70%,
+    #000 100%
+  );
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+/* Gold glowing edge on diagonal side */
+.diagonal-panel-1::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 141.42%;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(218, 165, 32, 0.3) 20%,
+    rgba(218, 165, 32, 1) 50%,
+    rgba(218, 165, 32, 0.3) 80%,
+    transparent 100%
+  );
+  transform: rotate(-45deg);
+  transform-origin: bottom right;
+  box-shadow: 
+    0 0 20px rgba(218, 165, 32, 1),
+    0 0 40px rgba(218, 165, 32, 0.6),
+    0 0 60px rgba(218, 165, 32, 0.3);
+  filter: blur(1px);
+}
+
+/* -------------------- BOTTOM-RIGHT PANEL -------------------- */
+/* Panel slides in from bottom-right corner */
+.diagonal-panel-2 {
+  bottom: -100%;
+  right: -100%;
+  background: linear-gradient(
+    315deg,
+    #000 0%,
+    #0d0d0d 30%,
+    #1a1a1a 50%,
+    #0d0d0d 70%,
+    #000 100%
+  );
+  clip-path: polygon(100% 100%, 100% 0, 0 100%);
+}
+
+/* Gold glowing edge on diagonal side */
+.diagonal-panel-2::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  width: 141.42%;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(218, 165, 32, 0.3) 20%,
+    rgba(218, 165, 32, 1) 50%,
+    rgba(218, 165, 32, 0.3) 80%,
+    transparent 100%
+  );
+  transform: rotate(-45deg);
+  transform-origin: top left;
+  box-shadow: 
+    0 0 20px rgba(218, 165, 32, 1),
+    0 0 40px rgba(218, 165, 32, 0.6),
+    0 0 60px rgba(218, 165, 32, 0.3);
+  filter: blur(1px);
+}
