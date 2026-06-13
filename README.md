@@ -65,9 +65,9 @@ Phoenix Bank is a production-grade banking application that simulates the core f
 **Requirements:** Docker Desktop 20.10+
 
 ```bash
-# 1. Clone and enter the infra directory
+# 1. Clone the repo
 git clone https://github.com/matijam2004/PhoenixBank.git
-cd PhoenixBank/infra
+cd PhoenixBank
 
 # 2. Configure environment
 cp env.example .env
@@ -109,16 +109,15 @@ PhoenixBank/
 │   │   ├── services/api/   # Typed API clients
 │   │   └── utils/          # Date, number, transaction helpers
 │   └── nginx.conf
-└── infra/
-    ├── docker-compose.yml
-    └── env.example
+├── docker-compose.yml
+└── env.example
 ```
 
 ---
 
 ## Environment Variables
 
-Copy `infra/env.example` to `infra/.env` and fill in:
+Copy `env.example` to `.env` and fill in:
 
 | Variable | Required | Description |
 |---|---|---|
