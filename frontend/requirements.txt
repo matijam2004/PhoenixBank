@@ -1,5 +1,0 @@
-# npm install _
-
-react-webcam
-uuid
-bootstrap
