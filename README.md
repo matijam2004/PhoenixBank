@@ -84,8 +84,6 @@ docker compose up -d
 
 All services (MongoDB, FastAPI backend, React frontend via nginx) start in the correct dependency order. The backend runs database index creation and kicks off the scheduler on startup.
 
-For a full breakdown of environment variables, service ports, and troubleshooting see [DOCKER_SETUP.md](DOCKER_SETUP.md).
-
 ---
 
 ## Project Structure
