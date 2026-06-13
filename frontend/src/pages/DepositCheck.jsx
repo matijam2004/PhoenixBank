@@ -17,6 +17,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import "../styles/styles-new.css";
 import "../styles/deposit-check.css";
 import { to_local, formatDateTime } from "../utils/dates";
+import { request } from "../services/api/http";
 
 function DepositCheck() {
   const webRef = useRef(null);
@@ -82,15 +83,10 @@ function DepositCheck() {
         setLoading(false);
         return;
       }
-      const res = await fetch("http://localhost:8000/api/checks/upload", {
+      const data = await request("/checks/ocr", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ imageDataUrl: uploadForm.frontCam }),
       });
-      if (!res.ok) {
-        throw new Error(`Server responded ${res.status}`);
-      }
-      const data = await res.json();
 
       if (data.structured_data) {
         console.log(data.structured_data);
