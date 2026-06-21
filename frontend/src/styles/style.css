@@ -12,6 +12,10 @@
 }
 
 /* Global Styles */
+html {
+  overflow-x: hidden;
+}
+
 html,
 body,
 #root {

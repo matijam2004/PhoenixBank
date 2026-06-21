@@ -56,10 +56,10 @@
 /* Container positioned off-screen for slide-in animation */
 .hero-container {
   position: absolute;
-  top: 40%;
-  left: -25%;
+  top: 50%;
+  left: clamp(1.5rem, 8%, 10rem);
   transform: translateY(-50%);
-  max-width: 600px;
+  max-width: min(600px, 55vw);
   z-index: 10;
 }
 
@@ -226,7 +226,7 @@
   -webkit-text-fill-color: inherit;
   background-image: none;
   background-clip: border-box;
-  font-size: 6rem;
+  font-size: clamp(3rem, 6vw, 6rem);
   overflow: hidden;
 }
 
@@ -291,11 +291,11 @@
   -webkit-text-fill-color: inherit;
   background-image: none;
   background-clip: border-box;
-  font-size: 9rem;
+  font-size: clamp(3.5rem, 8vw, 9rem);
 }
 
 .heading-style-h3.splash.text-align-center.scale-up {
-  font-size: 14rem;
+  font-size: clamp(4rem, 12vw, 14rem);
 }
 
 .heading-style-h3.text-padding-right {
@@ -343,4 +343,20 @@
   color: rgba(255, 255, 255, 0.6);
   letter-spacing: 0.15em;
   text-transform: uppercase;
+}
+
+@media (max-width: 900px) {
+  .hero-container {
+    left: 5%;
+    max-width: 90vw;
+    top: 45%;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-container {
+    left: 4%;
+    max-width: 92vw;
+    top: 40%;
+  }
 }
