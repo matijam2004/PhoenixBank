@@ -345,18 +345,20 @@
   text-transform: uppercase;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
   .hero-container {
     left: 5%;
+    right: 5%;
     max-width: 90vw;
     top: 45%;
   }
-}
 
-@media (max-width: 600px) {
-  .hero-container {
-    left: 4%;
-    max-width: 92vw;
-    top: 40%;
+  .heading-style-h3 {
+    font-size: clamp(2.2rem, 9vw, 3.5rem) !important;
+    line-height: 1.05;
+  }
+
+  .heading-style-h7 {
+    font-size: 0.95rem;
   }
 }

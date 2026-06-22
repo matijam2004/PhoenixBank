@@ -553,3 +553,9 @@
   .db-modal-body { padding: 20px; }
   .db-modal-footer { padding: 14px 20px 20px; }
 }
+@media (max-width: 480px) {
+  .db-cards-grid { grid-template-columns: 1fr; }
+  .db-actions-row { gap: 6px; }
+  .db-action-btn { padding: 8px 12px; font-size: 11px; }
+  .db-kpi-value { font-size: 22px !important; }
+}

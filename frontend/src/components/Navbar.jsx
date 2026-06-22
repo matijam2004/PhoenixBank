@@ -9,8 +9,12 @@ function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userType, setUserType] = useState(null);
   const [openAccounts, setOpenAccounts] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
   const accountsRef = useRef(null);
+
+  // Close mobile menu on route change
+  useEffect(() => { setMenuOpen(false); }, [location.pathname]);
 
   // Re-derive auth state on mount and whenever another part of the app modifies
   // sessionStorage (e.g. after login/logout or an OAuth redirect). We cache
@@ -100,6 +104,34 @@ function Navbar() {
     return null;
   }
 
+  const publicLinks = [
+    { to: "/", label: "Home" },
+    { to: "/cards", label: "Cards" },
+    { to: "/rewards", label: "Rewards & Benefits" },
+    { to: "/home-loans", label: "Home Loans" },
+    { to: "/travel", label: "Travel" },
+    { to: "/about", label: "About" },
+    { to: "/contact", label: "Contact" },
+  ];
+
+  const customerLinks = [
+    { to: "/dashboard", label: "Dashboard" },
+    { to: "/transfer", label: "Transfer" },
+    { to: "/deposit-check", label: "Deposit Check" },
+    { to: "/atm-locator", label: "ATM Locator" },
+    { to: "/scheduled-payments", label: "Scheduled Payments" },
+  ];
+
+  const managerLinks = [
+    { to: "/manager-dashboard", label: "Manager Dashboard" },
+    { to: "/checks", label: "Review Checks" },
+    { to: "/manager/card-review", label: "Card Review" },
+  ];
+
+  const activeLinks = !isLoggedIn
+    ? publicLinks
+    : (userType === "manager" || userType === "managers" ? managerLinks : customerLinks);
+
   return (
     <header>
       <nav>
@@ -107,128 +139,51 @@ function Navbar() {
           <img src="/images/Logo.png" alt="Phoenix Elite Banking" className="logo-img" />
         </Link>
 
-        {!isLoggedIn ? (
-          <>
-            <ul className="nav-top-bar-links">
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/cards">Cards</Link>
-              </li>
-              <li>
-                <Link to="/rewards">Rewards & Benefits</Link>
-              </li>
-              <li>
-                <Link to="/home-loans">Home Loans</Link>
-              </li>
-              <li>
-                <Link to="/travel">Travel</Link>
-              </li>
-              <li>
-                <Link to="/about">About</Link>
-              </li>
-              <li>
-                <Link to="/contact">Contact</Link>
-              </li>
-            </ul>
+        <ul className="nav-top-bar-links">
+          {activeLinks.map(({ to, label }) => (
+            <li key={to}><Link to={to}>{label}</Link></li>
+          ))}
+        </ul>
 
-            <div className="nav-buttons">
-              <Link to="/signup">
-                <button className="btn-secondary" style={{boxShadow: 'none'}}>Create Account</button>
-              </Link>
-              <Link to="/login">
-                <button className="btn-primary" style={{boxShadow: 'none'}}>Log In</button>
-              </Link>
-            </div>
-          </>
-        ) : (
-          <>
-            {userType === "manager" || userType === "managers" ? (
-              <>
-                <ul className="nav-top-bar-links">
-                  <li>
-                    <Link to="/manager-dashboard">Manager Dashboard</Link>
-                  </li>
-                  <li>
-                    <Link to="/checks">Review Checks</Link>
-                  </li>
-                  <li>
-                    <Link to="/manager/card-review">Card Review</Link>
-                  </li>
-                </ul>
-                <div className="nav-buttons">
-                  <button className="btn-primary" onClick={handleLogout}>
-                    Logout
-                  </button>
-                </div>
-              </>
-            ) : (
-              <>
-                <ul className="nav-top-bar-links">
-                  <li>
-                    <Link to="/dashboard">Dashboard</Link>
-                  </li>
+        <div className="nav-buttons">
+          {!isLoggedIn ? (
+            <>
+              <Link to="/signup"><button className="btn-secondary" style={{boxShadow: 'none'}}>Create Account</button></Link>
+              <Link to="/login"><button className="btn-primary" style={{boxShadow: 'none'}}>Log In</button></Link>
+            </>
+          ) : (
+            <button className="btn-primary" onClick={handleLogout}>Logout</button>
+          )}
+        </div>
 
-                  {/* <li className="nav-dropdown" ref={accountsRef}>
-                    <button className="nav-drop-trigger" aria-haspopup="true" aria-expanded={openAccounts ? "true" : "false"} onClick={() => setOpenAccounts((s) => !s)}>
-                      Accounts{" "}
-                      <span className={`caret ${openAccounts ? "open" : ""}`} aria-hidden>
-                        ▾
-                      </span>
-                    </button>
-
-                    {openAccounts && (
-                      <ul className="nav-drop-menu" role="menu">
-                        <li role="none">
-                          <Link role="menuitem" to="/accounts/checking" onClick={() => setOpenAccounts(false)}>
-                            Checking
-                          </Link>
-                        </li>
-                        <li role="none">
-                          <Link role="menuitem" to="/accounts/savings" onClick={() => setOpenAccounts(false)}>
-                            Savings
-                          </Link>
-                        </li>
-                        <li role="none">
-                          <Link role="menuitem" to="/accounts/debit" onClick={() => setOpenAccounts(false)}>
-                            Cards
-                          </Link>
-                        </li>
-                      </ul>
-                    )}
-                  </li> */}
-
-                  <li>
-                    <Link to="/transfer">Transfer</Link>
-                  </li>
-                  <li>
-                    <Link to="/deposit-check">Deposit Check</Link>
-                  </li>
-                  {/* <li>
-                    <Link to="/bill-pay">Bill Pay</Link>
-                  </li> */}
-                  <li>
-                    <Link to="/atm-locator">ATM Locator</Link>
-                  </li>
-                  {/* <li>
-                    <Link to="/account-settings">Account Settings</Link>
-                  </li> */}
-                  <li>
-                    <Link to="/scheduled-payments">Scheduled Payments</Link>
-                  </li>
-                </ul>
-
-                <div className="nav-buttons">
-                  <button className="btn-primary" onClick={handleLogout}>
-                    Logout
-                  </button>
-                </div>
-              </>
-            )}
-          </>
-        )}
+        {/* Hamburger button — mobile only */}
+        <button
+          className={`nav-hamburger ${menuOpen ? "open" : ""}`}
+          onClick={() => setMenuOpen(o => !o)}
+          aria-label="Toggle menu"
+        >
+          <span /><span /><span />
+        </button>
       </nav>
+
+      {/* Mobile menu */}
+      <div className={`nav-mobile-menu ${menuOpen ? "open" : ""}`}>
+        <ul>
+          {activeLinks.map(({ to, label }) => (
+            <li key={to}><Link to={to}>{label}</Link></li>
+          ))}
+        </ul>
+        {!isLoggedIn ? (
+          <div className="nav-mobile-buttons">
+            <Link to="/signup" onClick={() => setMenuOpen(false)}><button className="btn-secondary">Create Account</button></Link>
+            <Link to="/login" onClick={() => setMenuOpen(false)}><button className="btn-primary">Log In</button></Link>
+          </div>
+        ) : (
+          <div className="nav-mobile-buttons">
+            <button className="btn-primary" onClick={handleLogout}>Logout</button>
+          </div>
+        )}
+      </div>
     </header>
   );
 }
