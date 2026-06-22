@@ -56,10 +56,10 @@
 /* Container positioned off-screen for slide-in animation */
 .hero-container {
   position: absolute;
-  top: 50%;
-  left: clamp(1.5rem, 8%, 10rem);
+  top: 40%;
+  left: -25%;
   transform: translateY(-50%);
-  max-width: min(600px, 55vw);
+  max-width: 600px;
   z-index: 10;
 }
 
