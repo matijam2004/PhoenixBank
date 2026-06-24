@@ -79,7 +79,7 @@ async def get_account_list_by_customer(customer_id: str, user=Depends(get_curren
         raise HTTPException(status_code=500, detail="Internal server error")
 
 @router.get("/phones/{phone}/accounts", response_model=List[AccountInDB],
-            dependencies=[Depends(require_scope("manager"))])
+            dependencies=[Depends(require_scope("customer", "manager"))])
 async def get_account_list_by_phone(phone: str, db=Depends(get_db)):
     return await get_account_list_by_phone_service(phone, db)
 
