@@ -418,12 +418,19 @@ function ManagerDashboard() {
       return false;
     }
 
-    // Search query filter (name, email, ID)
+    // Search query filter (name, email, ID, phone)
     const name = getCustomerName(customer).toLowerCase();
     const email = (customer.email || "").toLowerCase();
     const id = (customerId || "").toLowerCase();
+    // Strip all non-digit characters so "(555) 123-4567" matches "5551234567"
+    const phone = (customer.phone || "").replace(/\D/g, "");
     const query = searchQuery.toLowerCase();
-    const matchesSearch = !searchQuery || name.includes(query) || email.includes(query) || id.includes(query);
+    const queryDigits = query.replace(/\D/g, "");
+    const matchesSearch = !searchQuery ||
+      name.includes(query) ||
+      email.includes(query) ||
+      id.includes(query) ||
+      (queryDigits && phone.includes(queryDigits));
 
     // Zip code filter
     const customerZip = (customer.zip || "").toLowerCase();
