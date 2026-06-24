@@ -39,6 +39,7 @@ function DepositCheck() {
   const [selectedSide, setSelectedSide] = useState("front");
   const [loading, setLoading] = useState(false);
   const [cameraReady, setCameraReady] = useState(false);
+  const [cameraError, setCameraError] = useState(null);
 
   // desconstructed uploadForm
   const { frontCam, backCam, frontFile, backFile, method, account_id, amount } = uploadForm;
@@ -278,14 +279,22 @@ function DepositCheck() {
                     </ul>
                     <div className="webcam-container">
                       <span className="label">Capturing {selectedSide}</span>
-                      <Webcam
-                        ref={webRef}
-                        screenshotFormat="image/jpeg"
-                        videoConstraints={{ facingMode: { ideal: "environment" } }}
-                        onUserMedia={() => setCameraReady(true)}
-                        onUserMediaError={() => setError("Camera access denied or unavailable")}
-                        style={{ width: "100%", height: "auto", display: "block", borderRadius: "8px" }}
-                      />
+                      {cameraError ? (
+                        <div style={{ padding: "2rem", textAlign: "center", color: "#ff6b6b", background: "rgba(255,0,0,0.1)", borderRadius: "8px" }}>
+                          <p>⚠️ Camera unavailable: {cameraError}</p>
+                          <p style={{ fontSize: "0.85rem", color: "#aaa" }}>Make sure you've allowed camera access in your browser settings, then refresh the page.</p>
+                        </div>
+                      ) : (
+                        <Webcam
+                          ref={webRef}
+                          screenshotFormat="image/jpeg"
+                          videoConstraints={{ facingMode: "user" }}
+                          onUserMedia={() => { setCameraReady(true); setCameraError(null); }}
+                          onUserMediaError={(err) => { setCameraError(err?.message || "Access denied"); setCameraReady(false); }}
+                          style={{ width: "100%", height: "auto", display: "block", borderRadius: "8px" }}
+                          mirrored={false}
+                        />
+                      )}
                     </div>
 
                     <div className="controls">
