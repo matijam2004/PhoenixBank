@@ -278,15 +278,14 @@ function DepositCheck() {
                     </ul>
                     <div className="webcam-container">
                       <span className="label">Capturing {selectedSide}</span>
-                      {method === "camera" && (
-                        <Webcam
-                          ref={webRef}
-                          screenshotFormat="image/jpeg"
-                          videoConstraints={{ facingMode: { ideal: "environment" } }}
-                          onUserMedia={() => setCameraReady(true)}
-                          onUserMediaError={() => setError("Camera access denied or unavailable")}
-                        />
-                      )}
+                      <Webcam
+                        ref={webRef}
+                        screenshotFormat="image/jpeg"
+                        videoConstraints={{ facingMode: { ideal: "environment" } }}
+                        onUserMedia={() => setCameraReady(true)}
+                        onUserMediaError={() => setError("Camera access denied or unavailable")}
+                        style={{ width: "100%", height: "auto", display: "block", borderRadius: "8px" }}
+                      />
                     </div>
 
                     <div className="controls">
