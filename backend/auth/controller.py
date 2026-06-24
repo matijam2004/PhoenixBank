@@ -11,38 +11,26 @@ from slowapi.util import get_remote_address
 logger = logging.getLogger(__name__)
 limiter = Limiter(key_func=get_remote_address)
 
-# OAuth CSRF protection. Before redirecting to Google we generate a random state
-# token, store it here with a 10-minute TTL, and include it in the OAuth URL.
-# On callback we validate and consume that token — if it's missing or doesn't
-# match, the request is rejected as a potential CSRF attack.
-#
-# This is intentionally in-memory. For a horizontally-scaled deployment you'd
-# replace this with a Redis SET with TTL. For a single-instance Docker container
-# it's perfectly fine and avoids introducing a Redis dependency.
-_oauth_states: dict[str, tuple[str, datetime]] = {}
+# OAuth CSRF state is stored in MongoDB so it survives server restarts.
+# Render's free tier spins down after inactivity — an in-memory dict would
+# lose all pending states on restart, causing every Google login to fail.
+# The oauth_states collection has a TTL index that expires documents after
+# 10 minutes, so stale tokens clean themselves up automatically.
 
-def _create_oauth_state(flow: str) -> str:
-    """Generate a cryptographically random CSRF state token and store it."""
+async def _create_oauth_state(flow: str, db) -> str:
     token = secrets.token_urlsafe(32)
-    expiry = datetime.utcnow() + timedelta(minutes=10)
-    _oauth_states[token] = (flow, expiry)
-    # Prune stale entries on every write so the dict doesn't grow indefinitely.
-    # This is cheap enough inline — the dict is tiny in practice.
-    now = datetime.utcnow()
-    expired_keys = [k for k, (_, exp) in _oauth_states.items() if exp < now]
-    for k in expired_keys:
-        del _oauth_states[k]
+    await db["oauth_states"].insert_one({
+        "token": token,
+        "flow": flow,
+        "created_at": datetime.utcnow(),
+    })
     return token
 
-def _consume_oauth_state(state: str) -> str:
-    """Validate and consume a state token. Returns the flow or raises 400."""
-    entry = _oauth_states.pop(state, None)
-    if entry is None:
+async def _consume_oauth_state(state: str, db) -> str:
+    doc = await db["oauth_states"].find_one_and_delete({"token": state})
+    if doc is None:
         raise HTTPException(status_code=400, detail="Invalid OAuth state — possible CSRF attack")
-    flow, expiry = entry
-    if datetime.utcnow() > expiry:
-        raise HTTPException(status_code=400, detail="OAuth state token expired")
-    return flow
+    return doc["flow"]
 
 from fastapi import APIRouter, Depends, Response, HTTPException, status
 from fastapi.responses import RedirectResponse
@@ -157,17 +145,17 @@ async def login(request: Request, body: LoginRequest, response: Response, db=Dep
     return token_response
 
 @router.get("/google/login")
-async def google_login():
+async def google_login(db=Depends(get_db)):
     if not GOOGLE_CLIENT_ID:
         raise HTTPException(status_code=500, detail="Google OAuth not configured")
-    state = _create_oauth_state("login")
+    state = await _create_oauth_state("login", db)
     return RedirectResponse(url=_build_google_oauth_url(state))
 
 @router.get("/google/signup")
-async def google_signup():
+async def google_signup(db=Depends(get_db)):
     if not GOOGLE_CLIENT_ID:
         raise HTTPException(status_code=500, detail="Google OAuth not configured")
-    state = _create_oauth_state("signup")
+    state = await _create_oauth_state("signup", db)
     return RedirectResponse(url=_build_google_oauth_url(state))
 
 @router.get("/google/callback")
@@ -184,7 +172,7 @@ async def google_callback(
     if not state:
         return RedirectResponse(url=f"{frontend_url}/login?error=missing_state")
     try:
-        flow = _consume_oauth_state(state)
+        flow = await _consume_oauth_state(state, db)
     except HTTPException:
         return RedirectResponse(url=f"{frontend_url}/login?error=invalid_state")
     

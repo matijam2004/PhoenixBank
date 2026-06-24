@@ -94,6 +94,9 @@ async def connect() -> None:
     await _ensure_index(db["email_verifications"], [("token", 1)], unique=True)
     await _ensure_index(db["email_verifications"], [("created_at", 1)], expireAfterSeconds=24*3600)
 
+    await _ensure_index(db["oauth_states"], [("token", 1)], unique=True)
+    await _ensure_index(db["oauth_states"], [("created_at", 1)], expireAfterSeconds=600)
+
 def get_db() -> AsyncIOMotorDatabase:
     if _client is None:
         raise RuntimeError("Mongo client not initialized. Did you call connect() on startup?")
