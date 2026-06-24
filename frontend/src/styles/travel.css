@@ -603,7 +603,8 @@
     padding: 0 30px;
   }
 
-  section {
+  /* override high-specificity base rule */
+  .travel-page section:not(.travel-hero) {
     padding: 60px 30px;
   }
 
@@ -623,10 +624,6 @@
     flex-direction: column;
     gap: 20px;
     text-align: center;
-  }
-
-  .travel-testimonial-section {
-    padding: 60px 30px;
   }
 
   .testimonial-quote {
